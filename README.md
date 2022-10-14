@@ -10,3 +10,7 @@
 <p><b>c.<b> O tempo máximo da Review deveria ser no máximo 2 horas. Por conta que é uma cerimônia para analisar o resultado da sprint e determinar futuras adaptações.</p>
 
 <p><b>d.<b> O tempo máximo da Retrospectiva deveria ser 2 horas. Pela necessidade de analisar o time, ver seus erros e acertos e fazer os ajustes necessários.</p>
+
+
+
+<p><b>Questão 2</b><br> O Framework Scrum é uma forma de organizar as demandas do projeto e realizar os serviços. O Scrum é uma maneira eficiente de produzir produtos complexos, abertos a mudanças e de uma maneira mais eficiente.<br> Essa estrutura funciona dividindo os integrantes do time em 3, Product Owner, Time de desenvolvimento e Scrum Master, para maximizar a eficiência da produção. Uma outra boa prática dessa estrutura também é a realização de reuniões, chamadas de eventos, esses eventos são bem organizados e definidos para evitar outras reuniões e perdas desnecessárias na produção.<br> Outro grande fator no Scrum é a implementação do sistema de Sprints, que servem para dividir a produção do produto e gerar um protótipo utilizável para aprovação e analise de possível mudança e/ou incremento.</p>
