@@ -15,4 +15,10 @@
 
 <p><b>Questão 2</b><br> O Framework Scrum é uma forma de organizar as demandas do projeto e realizar os serviços. O Scrum é uma maneira eficiente de produzir produtos complexos, abertos a mudanças e de uma maneira mais eficiente.<br> Essa estrutura funciona dividindo os integrantes do time em 3, Product Owner, Time de desenvolvimento e Scrum Master, para maximizar a eficiência da produção. Uma outra boa prática dessa estrutura também é a realização de reuniões, chamadas de eventos, esses eventos são bem organizados e definidos para evitar outras reuniões e perdas desnecessárias na produção.<br> Outro grande fator no Scrum é a implementação do sistema de Sprints, que servem para dividir a produção do produto e gerar um protótipo utilizável para aprovação e analise de possível mudança e/ou incremento.</p>
 
-<p><b>Questão 3</b> Esse problema ocorreu devido à não adicionar os arquivos ao commit. Esse problema pode ser facilmente resolvido utilizando o comando "git add ." ou de forma mais específica "git add README.md Product.js"</p>
+
+
+<p><b>Questão 3</b> Esse problema ocorreu devido à não adicionar os arquivos ao commit. Esse problema pode ser facilmente resolvido utilizando o comando "git add ." ou de forma mais específica "git add README.md Product.js".</p>
+
+
+
+<p><b>Questão 4</b> Para desconsiderar os arquivos indesejados o time de desenvolvimento deve adicionar a lista de extensões em um arquivo ".gitignore".</p>
