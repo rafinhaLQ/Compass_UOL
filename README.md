@@ -7,6 +7,6 @@
 
 <p><b>b.<b> O tempo máximo da Planning deveria ser pelo menos 5 horas. Levando em consideração que temos que analisar o rendimento do time e planejar uma sprint que traga resultados significativos em relação ao tempo.</p>
 
-<p><b>c.<b> O tempo máximo da Review deveria ser no máximo 2 horas. Por conta que é uma cerimônia para analisar o resultado e mudar caso seja necessário.</p>
+<p><b>c.<b> O tempo máximo da Review deveria ser no máximo 2 horas. Por conta que é uma cerimônia para analisar o resultado da sprint e determinar futuras adaptações.</p>
 
 <p><b>d.<b> O tempo máximo da Retrospectiva deveria ser 2 horas. Pela necessidade de analisar o time, ver seus erros e acertos e fazer os ajustes necessários.</p>
