@@ -66,7 +66,7 @@ public class Quiz {
 
             String resposta;
 
-            System.out.printf("Pergunta %d\n\n", cont);
+            System.out.printf("Questao %d\n\n", cont);
             System.out.println(perguntas[cont-1]);
             System.out.println("VERDADEIRO ou FALSO: ");
             
