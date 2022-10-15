@@ -25,7 +25,7 @@ public class Quiz {
         } else if (resposta.equals("FALSO")) {
             return resposta;
         } else {
-            System.out.printf("\nOpção inválida!\n\nPor favor responda com \"VERDADEIRO\" ou \"FALSO\": ");
+            System.out.printf("\nOpcao invalida!\n\nPor favor responda com \"VERDADEIRO\" ou \"FALSO\": ");
             resposta = scan.nextLine();
             // Cria o loop até receber uma resposta válida.
             return verificaVerdadeiroFalso(resposta);
@@ -37,10 +37,10 @@ public class Quiz {
 
         // Array contendo as perguntas do quiz.
         String[] perguntas = {
-                "A Bahia não é o estado que mais faz divisa com outros estados",
-                "Na Bahia, há um clube que foi o primeiro campeão brasileiro da história",
+                "A Bahia nao eh o estado que mais faz divisa com outros estados",
+                "Na Bahia, ha um clube que foi o primeiro campeao brasileiro da historia",
                 "Salvador foi a primeira capital do Brasil",
-                "A Bahia é o estado que tem o maior litoral",
+                "A Bahia eh o estado que tem o maior litoral",
                 "A Bahia faz divisa com o Rio de Janeiro"
         };
 
@@ -59,7 +59,7 @@ public class Quiz {
         // Introdução do quiz
         System.out.printf("\n\tQuiz da Bahia!\n\n\n");
 
-        System.out.printf("Este quiz irá apresentar afirmações que você dirá se é \"VERDADEIRO\" ou \"FALSO\"\n\n");
+        System.out.printf("Este quiz ira apresentar afirmacoes que voce dira se eh \"VERDADEIRO\" ou \"FALSO\"\n\n");
 
         // Loop para imprimir perguntas e receber respostas.
         for (int cont = 1; cont <= 5; cont++) {
@@ -88,7 +88,7 @@ public class Quiz {
 
         System.out.println("Resultado:");
         for (int cont = 0; cont < 5; cont++) {
-            System.out.printf("Questão %d: %s\n", cont, respostas[cont]);
+            System.out.printf("Questao %d: %s\n", cont, respostas[cont]);
             if (respostas[cont].equals("ACERTOU"))
                 acertos++;
             else
