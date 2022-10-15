@@ -21,6 +21,8 @@ import java.time.LocalTime;
 
 public class CadastroEducado {
 
+    // boolean para indicar se tem algum usuário registrado no sistema.
+    static boolean verifica = false;
     // Declaração do Scanner global.
     static Scanner scan = new Scanner(System.in);
 
@@ -49,12 +51,15 @@ public class CadastroEducado {
         System.out.print("Informe a senha que voce deseja usar: ");
         senhaCadastrando = scan.nextLine();
         usuarioCriado.cadastra(usuarioCadastrando, senhaCadastrando);
+        // Indica que já tem ao menos um usuário no sistema.
+        verifica = true;
         return usuarioCriado;
 
     }
 
     // Método para tentativa de logar usuário
     static void logaUsuario(Usuario usuario) {
+
         String usuarioLogando, senhaLogando;
         System.out.print("Usuario: ");
         // Essa chamada do scan é para limpar o buffer do teclado.
@@ -67,6 +72,7 @@ public class CadastroEducado {
         } else {
             System.out.printf("\n\nUsuario e/ou senha incorretos.\n");
         }
+
     }
 
     // Método que exibe a mensagem ao usuário.
@@ -103,7 +109,10 @@ public class CadastroEducado {
                     break;
 
                 case 2:
-                    logaUsuario(usuario);
+                    if (verifica)
+                        logaUsuario(usuario);
+                    else
+                        System.out.println("Nenhum usuário registrado no sistema! Se cadastre!");
                     break;
 
                 case 3:
