@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 public class Quiz {
 
-    //Declaração do Scanner global.
+    // Declaração do Scanner global.
     static Scanner scan = new Scanner(System.in);
 
-    //função que verifica se a resposta dada pelo usuário é válida.
-    public static String verificaVerdadeiroFalso (String resposta) {
+    // função que verifica se a resposta dada pelo usuário é válida.
+    public static String verificaVerdadeiroFalso(String resposta) {
 
-        //Deixa resposta em letra maiúscula.
+        // Deixa resposta em letra maiúscula.
         resposta = resposta.toUpperCase();
 
         if (resposta.equals("VERDADEIRO")) {
@@ -27,67 +27,67 @@ public class Quiz {
         } else {
             System.out.printf("\nOpção inválida!\n\nPor favor responda com \"VERDADEIRO\" ou \"FALSO\": ");
             resposta = scan.nextLine();
-            //Cria o loop até receber uma resposta válida.
+            // Cria o loop até receber uma resposta válida.
             return verificaVerdadeiroFalso(resposta);
         }
 
     }
 
     public static void main(String[] args) {
-        
-        //Array contendo as perguntas do quiz.
+
+        // Array contendo as perguntas do quiz.
         String[] perguntas = {
-            "A Bahia não é o estado que mais faz divisa com outros estados",
-            "Na Bahia, há um clube que foi o primeiro campeão brasileiro da história",
-            "Salvador foi a primeira capital do Brasil",
-            "A Bahia é o estado que tem o maior litoral",
-            "A Bahia faz divisa com o Rio de Janeiro"
+                "A Bahia não é o estado que mais faz divisa com outros estados",
+                "Na Bahia, há um clube que foi o primeiro campeão brasileiro da história",
+                "Salvador foi a primeira capital do Brasil",
+                "A Bahia é o estado que tem o maior litoral",
+                "A Bahia faz divisa com o Rio de Janeiro"
         };
 
-        //Array contendo o gabarito do quiz.
+        // Array contendo o gabarito do quiz.
         String[] gabarito = {
-            "FALSO",
-            "VERDADEIRO",
-            "VERDADEIRO",
-            "VERDADEIRO",
-            "FALSO"
+                "FALSO",
+                "VERDADEIRO",
+                "VERDADEIRO",
+                "VERDADEIRO",
+                "FALSO"
         };
 
-        //Array que armazena respotas do quiz
+        // Array que armazena respotas do quiz
         String[] respostas = new String[5];
 
-        //Introdução do quiz
+        // Introdução do quiz
         System.out.printf("\n\tQuiz da Bahia!\n\n\n");
 
         System.out.printf("Este quiz irá apresentar afirmações que você dirá se é \"VERDADEIRO\" ou \"FALSO\"\n\n");
 
-        //Loop para imprimir perguntas e receber respostas.
-        for (int cont = 1; cont <= 5; cont++){
+        // Loop para imprimir perguntas e receber respostas.
+        for (int cont = 1; cont <= 5; cont++) {
 
             String resposta;
 
             System.out.printf("Questao %d\n\n", cont);
-            System.out.println(perguntas[cont-1]);
+            System.out.println(perguntas[cont - 1]);
             System.out.println("VERDADEIRO ou FALSO: ");
-            
+
             resposta = scan.nextLine();
             resposta = verificaVerdadeiroFalso(resposta);
 
-            if (resposta.equals(gabarito[cont-1])) {
+            if (resposta.equals(gabarito[cont - 1])) {
                 System.out.println("ACERTOU!");
-                respostas[cont-1] = "ACERTOU";
+                respostas[cont - 1] = "ACERTOU";
             } else {
                 System.out.println("ERROU!");
-                respostas[cont-1] = "ERROU";
+                respostas[cont - 1] = "ERROU";
             }
             System.out.printf("\n\n\n");
         }
 
-        //Resultado do quiz.
-        int acertos=0, erros=0;
-        
+        // Resultado do quiz.
+        int acertos = 0, erros = 0;
+
         System.out.println("Resultado:");
-        for(int cont = 0; cont < 5; cont++){
+        for (int cont = 0; cont < 5; cont++) {
             System.out.printf("Questão %d: %s\n", cont, respostas[cont]);
             if (respostas[cont].equals("ACERTOU"))
                 acertos++;
@@ -98,5 +98,5 @@ public class Quiz {
         System.out.printf("\n\nAcertos: %d\nErros: %d", acertos, erros);
 
     }
-    
+
 }
