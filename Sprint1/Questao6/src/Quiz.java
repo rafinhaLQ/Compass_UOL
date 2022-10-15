@@ -88,7 +88,7 @@ public class Quiz {
 
         System.out.println("Resultado:");
         for (int cont = 0; cont < 5; cont++) {
-            System.out.printf("Questao %d: %s\n", cont, respostas[cont]);
+            System.out.printf("Questao %d: %s\n", cont+1, respostas[cont]);
             if (respostas[cont].equals("ACERTOU"))
                 acertos++;
             else
