@@ -25,3 +25,8 @@
 
 
 <p><b>Questão 5</b> As novas responsabilidades de José no seu novo cargo de Product Owner são: Apresentar e organizar os itens da Backlog, organizando-os de maneira de melhorar a produção, garantir que o time de desenvolvimento entenda os itens da Backlog e garantir o valor de trabalho do time.</p>
+
+
+<h3>Documentação Questão 7</h3>
+
+<p>O sistema da questão 7 só tem suporte para um usuário, se tentar criar outro usuário ele será salvo no mesmo local do último usuário, assim o substituindo.</p>
