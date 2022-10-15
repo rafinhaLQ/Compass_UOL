@@ -17,13 +17,13 @@
 <p><b>Questão 2</b><br> O Framework Scrum é uma forma de organizar as demandas do projeto e realizar os serviços. O Scrum é uma maneira eficiente de produzir produtos complexos, abertos a mudanças e de uma maneira mais eficiente.<br> Essa estrutura funciona dividindo os integrantes do time em 3, Product Owner, Time de desenvolvimento e Scrum Master, para maximizar a eficiência da produção, incentivando o trabalho em equipe e a comunicação. Uma outra boa prática dessa estrutura também é a realização de reuniões, chamadas de eventos, esses eventos são bem organizados e definidos para evitar outras reuniões e perdas desnecessárias na produção.<br> Outro grande fator no Scrum é a implementação do sistema de Sprints, que servem para dividir a produção do produto e gerar um protótipo utilizável para aprovação e analise de possível mudança e/ou incremento, assim conseguindo corrigir qualquer eventualidade.</p>
 <br>
 
-<p><b>Questão 3</b> Esse problema ocorreu devido à não adicionar os arquivos ao commit. Esse problema pode ser facilmente resolvido utilizando o comando "git add ." ou de forma mais específica "git add README.md Product.js".</p>
+<p><b>Questão 3</b><br> Esse problema ocorreu devido à não adicionar os arquivos ao commit. Esse problema pode ser facilmente resolvido utilizando o comando "git add ." ou de forma mais específica "git add README.md Product.js".</p>
 <br>
 
-<p><b>Questão 4</b> Para desconsiderar os arquivos indesejados o time de desenvolvimento deve adicionar a lista de extensões em um arquivo ".gitignore".</p>
+<p><b>Questão 4</b><br> Para desconsiderar os arquivos indesejados o time de desenvolvimento deve adicionar a lista de extensões em um arquivo ".gitignore".</p>
 <br>
 
-<p><b>Questão 5</b> As novas responsabilidades de José no seu novo cargo de Product Owner são: Apresentar e organizar os itens da Backlog, organizando-os de maneira de melhorar a produção, garantir que o time de desenvolvimento entenda os itens da Backlog e garantir o valor de trabalho do time.</p>
+<p><b>Questão 5</b><br> As novas responsabilidades de José no seu novo cargo de Product Owner são: Apresentar e organizar os itens da Backlog, organizando-os de maneira de melhorar a produção, garantir que o time de desenvolvimento entenda os itens da Backlog e garantir o valor de trabalho do time.</p>
 <br>
 <br>
 <h3>Documentação Questão 7</h3>
