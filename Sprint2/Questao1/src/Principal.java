@@ -1,5 +1,4 @@
-
-    /*
+/*
     Crie uma entidade produto, com os seguintes atributos:
     • id
     • nome
@@ -17,19 +16,30 @@
     ação foi realizada. Para finalizar a aplicação deve ser selecionado a opção 0.
     */
 
+import java.util.Scanner;
+
 public class Principal {
     
+    //Metodo que imprime o menu do sistema.
     public static void exibeMenu() {
         System.out.printf("\n\tMenu da Aplicacao\n\n");
-        System.out.printf("1 - Cadastrar Produtos");
-        System.out.printf("2 - Atualizar Produto");
-        System.out.printf("3 - Excluir Produto");
-        System.out.printf("0 - Sair");
+        System.out.println("1 - Cadastrar Produtos");
+        System.out.println("2 - Atualizar Produto");
+        System.out.println("3 - Excluir Produto");
+        System.out.println("0 - Sair");
     }
 
     public static void main(String[] args) {
         
-        
+        Scanner scan = new Scanner(System.in);
+        //Variavel de escolha entre as opcoes do menu.
+        int menu = 1;
+        while (menu != 0) {
+            String menuString;
+            exibeMenu();
+            menuString = scan.nextLine();
+            menu = MudaTipoDado.mudaParaInt(menuString);
+        }
 
     }
 
