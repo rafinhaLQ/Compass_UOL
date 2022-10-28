@@ -14,7 +14,7 @@
     Obs.: Tudo deve ser feito de forma automática apenas selecionando as opções ao
     selecionar uma ação, deve ser mantida as opções apenas sinalizando no console que
     ação foi realizada. Para finalizar a aplicação deve ser selecionado a opção 0.
-    */
+*/
 
 import java.util.Scanner;
 
