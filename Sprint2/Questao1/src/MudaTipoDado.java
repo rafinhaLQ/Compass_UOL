@@ -1,4 +1,3 @@
-//Classe para mudar tipos de dados.
 public class MudaTipoDado {
 
     public static int mudaParaInt(String string) {

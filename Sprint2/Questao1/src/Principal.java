@@ -20,13 +20,13 @@ import java.util.Scanner;
 
 public class Principal {
 
-    private static boolean jaCadastrado = false;
-    private static boolean jaAtualizado = false;
-    private static boolean jaRemovido = false;
+    private static boolean produtosJaCadastrado = false;
+    private static boolean produtoJaAtualizado = false;
+    private static boolean produtoJaRemovido = false;
 
     public static void cadastraTresProdutos(ProdutoController produtoController) {
 
-        if (!jaCadastrado){
+        if (!produtosJaCadastrado){
             Produto detergente = new Produto("Detergente", "Detergente liquido Ypê 500ml neutro", 127, 3.32);
             Produto sabao = new Produto("Sabão em Pó", "Sabão em pó da marca Omo 1.6kg", 251, 14.90);
             Produto desinfetante = new Produto("Desinfetante", "Limpador perfumado Veja lavanda 500ml", 49, 11.99);
@@ -34,7 +34,7 @@ public class Principal {
             produtoController.cadastrar(detergente);
             produtoController.cadastrar(sabao);
             produtoController.cadastrar(desinfetante);
-            jaCadastrado = true;
+            produtosJaCadastrado = true;
         } else {
             System.out.println("Produtos ja cadastrados!");
         }
@@ -42,10 +42,10 @@ public class Principal {
 
     public static void atualizarPrimeiroProduto(ProdutoController produtoController) {
 
-        if (jaCadastrado){
-            if (!jaAtualizado) {
+        if (produtosJaCadastrado){
+            if (!produtoJaAtualizado) {
                 produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
-                jaAtualizado = true;
+                produtoJaAtualizado = true;
             } else {
                 System.out.println("Produto ja atualizado!");
             }
@@ -57,10 +57,10 @@ public class Principal {
 
     public static void excluirSegundoProduto(ProdutoController produtoController) {
 
-        if (jaCadastrado){
-            if (!jaRemovido) {
+        if (produtosJaCadastrado){
+            if (!produtoJaRemovido) {
                 produtoController.excluir(2);
-                jaRemovido = true;
+                produtoJaRemovido = true;
             } else {
                 System.out.println("Produto ja removido!");
             }
@@ -82,13 +82,13 @@ public class Principal {
 
         ProdutoController produtoController = new ProdutoController();
         Scanner scan = new Scanner(System.in);
-        int menu;
+        int opcaoMenu;
         do {
-            String menuString;
+            String opcaoMenuEmString;
             exibeMenu();
-            menuString = scan.nextLine();
-            menu = MudaTipoDado.mudaParaInt(menuString);
-            switch (menu) {
+            opcaoMenuEmString = scan.nextLine();
+            opcaoMenu = MudaTipoDado.mudaParaInt(opcaoMenuEmString);
+            switch (opcaoMenu) {
                 case 1:
                     cadastraTresProdutos(produtoController);
                     break;
@@ -104,7 +104,7 @@ public class Principal {
                 default:
                     System.out.println("Opcao inexistente! Escolha uma opcao valida!");
             }
-        } while (menu != 0);
+        } while (opcaoMenu != 0);
         scan.close();
     }
 
