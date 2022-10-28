@@ -45,13 +45,14 @@ public class Principal {
         if (jaCadastrado){
             if (!jaAtualizado) {
                 produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
+                jaAtualizado = true;
             } else {
                 System.out.println("Produto ja atualizado!");
             }
         } else {
             System.out.println("Sem produtos para atualizar. Cadastre os produtos primeiro.");
         }
-        
+
     }
 
     public static void excluirSegundoProduto(ProdutoController produtoController) {
@@ -59,6 +60,7 @@ public class Principal {
         if (jaCadastrado){
             if (!jaRemovido) {
                 produtoController.excluir(2);
+                jaRemovido = true;
             } else {
                 System.out.println("Produto ja removido!");
             }
