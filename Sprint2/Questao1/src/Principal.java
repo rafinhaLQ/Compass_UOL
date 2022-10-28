@@ -33,9 +33,11 @@ public class Principal {
     }
     
     public static void atualizarPrimeiroProduto(ProdutoController produtoController) {
-
         produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
+    }
 
+    public static void excluirSegundoProduto(ProdutoController produtoController) {
+        produtoController.excluir(2);
     }
 
     //Metodo que imprime o menu do sistema.
@@ -61,14 +63,13 @@ public class Principal {
             switch(menu){
                 case 1: cadastraTresProdutos(produtoController);
                     break;
-                case 2: 
+                case 2: atualizarPrimeiroProduto(produtoController);
                     break;
-                case 3:
+                case 3: excluirSegundoProduto(produtoController);
                     break;
-                case 0:
+                case 0: System.out.println("Ate mais!");
                     break;
-                default:
-                    System.out.println("Até mais!");
+                default: System.out.println("Opcao inexistente! Escolha uma opcao valida!");
             }
         }
         scan.close();
