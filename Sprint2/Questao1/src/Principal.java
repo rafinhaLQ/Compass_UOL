@@ -20,12 +20,10 @@ import java.util.Scanner;
 
 public class Principal {
 
-    public static void cadastraTresProdutos() {
-        
-        ProdutoController produtoController = new ProdutoController();
+    public static void cadastraTresProdutos(ProdutoController produtoController) {
 
-        Produto sabao = new Produto("Sabão em Pó", "Sabão em pó da marca Omo 1.6kg", 251, 23.90);
-        Produto detergente = new Produto("Detergente", "Detergente liquido Ypê 500ml neutro", 127, 27.40);
+        Produto sabao = new Produto("Sabão em Pó", "Sabão em pó da marca Omo 1.6kg", 251, 14.90);
+        Produto detergente = new Produto("Detergente", "Detergente liquido Ypê 500ml neutro", 127, 3.32);
         Produto desinfetante = new Produto("Desinfetante", "Limpador perfumado Veja lavanda 500ml", 49, 11.99);
         
         produtoController.cadastrar(sabao);
@@ -34,6 +32,12 @@ public class Principal {
 
     }
     
+    public static void atualizarPrimeiroProduto(ProdutoController produtoController) {
+
+        produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
+
+    }
+
     //Metodo que imprime o menu do sistema.
     public static void exibeMenu() {
         System.out.printf("\n\tMenu da Aplicacao\n\n");
@@ -45,6 +49,7 @@ public class Principal {
 
     public static void main(String[] args) {
         
+        ProdutoController produtoController = new ProdutoController();
         Scanner scan = new Scanner(System.in);
         //Variavel de escolha entre as opcoes do menu.
         int menu = 1;
@@ -54,9 +59,9 @@ public class Principal {
             menuString = scan.nextLine();
             menu = MudaTipoDado.mudaParaInt(menuString);
             switch(menu){
-                case 1: 
+                case 1: cadastraTresProdutos(produtoController);
                     break;
-                case 2:
+                case 2: 
                     break;
                 case 3:
                     break;
