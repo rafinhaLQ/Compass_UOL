@@ -20,24 +20,52 @@ import java.util.Scanner;
 
 public class Principal {
 
+    private static boolean jaCadastrado = false;
+    private static boolean jaAtualizado = false;
+    private static boolean jaRemovido = false;
+
     public static void cadastraTresProdutos(ProdutoController produtoController) {
 
-        Produto detergente = new Produto("Detergente", "Detergente liquido Ypê 500ml neutro", 127, 3.32);
-        Produto sabao = new Produto("Sabão em Pó", "Sabão em pó da marca Omo 1.6kg", 251, 14.90);
-        Produto desinfetante = new Produto("Desinfetante", "Limpador perfumado Veja lavanda 500ml", 49, 11.99);
+        if (!jaCadastrado){
+            Produto detergente = new Produto("Detergente", "Detergente liquido Ypê 500ml neutro", 127, 3.32);
+            Produto sabao = new Produto("Sabão em Pó", "Sabão em pó da marca Omo 1.6kg", 251, 14.90);
+            Produto desinfetante = new Produto("Desinfetante", "Limpador perfumado Veja lavanda 500ml", 49, 11.99);
 
-        produtoController.cadastrar(detergente);
-        produtoController.cadastrar(sabao);
-        produtoController.cadastrar(desinfetante);
-
+            produtoController.cadastrar(detergente);
+            produtoController.cadastrar(sabao);
+            produtoController.cadastrar(desinfetante);
+            jaCadastrado = true;
+        } else {
+            System.out.println("Produtos ja cadastrados!");
+        }
     }
 
     public static void atualizarPrimeiroProduto(ProdutoController produtoController) {
-        produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
+
+        if (jaCadastrado){
+            if (!jaAtualizado) {
+                produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
+            } else {
+                System.out.println("Produto ja atualizado!");
+            }
+        } else {
+            System.out.println("Sem produtos para atualizar. Cadastre os produtos primeiro.");
+        }
+        
     }
 
     public static void excluirSegundoProduto(ProdutoController produtoController) {
-        produtoController.excluir(2);
+
+        if (jaCadastrado){
+            if (!jaRemovido) {
+                produtoController.excluir(2);
+            } else {
+                System.out.println("Produto ja removido!");
+            }
+        } else {
+            System.out.println("Sem produtos para remover. Cadastre os produtos primeiro.");
+        }
+        
     }
 
     // Metodo que imprime o menu do sistema.
@@ -53,7 +81,6 @@ public class Principal {
 
         ProdutoController produtoController = new ProdutoController();
         Scanner scan = new Scanner(System.in);
-        // Variavel de escolha entre as opcoes do menu.
         int menu;
         do {
             String menuString;
