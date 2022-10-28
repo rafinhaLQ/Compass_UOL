@@ -3,7 +3,7 @@ public class MudaTipoDado {
 
     public static int mudaParaInt(String string) {
         int inteiro;
-        //Try Catch para caso o tipo de dado nao seja valido.
+
         try{
             inteiro = Integer.parseInt(string);
         } catch(NumberFormatException e){

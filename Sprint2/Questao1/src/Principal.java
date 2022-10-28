@@ -70,7 +70,6 @@ public class Principal {
         
     }
 
-    // Metodo que imprime o menu do sistema.
     public static void exibeMenu() {
         System.out.printf("\n\tMenu da Aplicacao\n\n");
         System.out.println("1 - Cadastrar Produtos");
