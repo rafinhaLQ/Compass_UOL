@@ -6,7 +6,7 @@ public class ProdutoController {
 
     public ProdutoController(ProdutoDAO produtoDAO) {
         Connection connection = new ConnectionFactory().efetuarConexao(); 
-        this.produtoDAO = produtoDAO;
+        this.produtoDAO = new ProdutoDAO(connection);
     }
 
     public void cadastrar(Produto produto) {
