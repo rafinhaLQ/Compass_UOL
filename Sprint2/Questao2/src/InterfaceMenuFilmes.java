@@ -23,6 +23,12 @@ public class InterfaceMenuFilmes {
             pagina = MudaTipoDado.mudaParaInt(paginaEmString);
             if (pagina == 0)
                 break;
+            else if (pagina != 1 && pagina != 2) {
+                System.out.printf("Pagina inexistente!\nTente novamente!\n");
+                System.out.println("Aperte enter para continuar!");
+                scan.nextLine(); //Simula pausa
+                continue;
+            }
             System.out.println("Informe a quantidade de filmes que voce quer dessa pagina: ");
             quantidadeFilmesEmString = scan.nextLine();
             quantidadeFilmes = MudaTipoDado.mudaParaInt(quantidadeFilmesEmString);
