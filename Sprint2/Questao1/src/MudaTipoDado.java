@@ -7,7 +7,6 @@ public class MudaTipoDado {
             inteiro = Integer.parseInt(string);
         } catch(NumberFormatException e){
             System.out.println("Esse valor nao eh valido!");
-            //Loop ate receber valor valido.
             inteiro = 4;
         }
         return inteiro;
