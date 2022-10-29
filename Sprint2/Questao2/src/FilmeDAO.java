@@ -16,7 +16,7 @@ public class FilmeDAO {
     public List<Filme> listarComFiltro(int id1, int id2) {
         try {
             List<Filme> filmes = new ArrayList<>();
-            String comandoSQL = "select nome, ano, descricao from filmes where id > ? and id < ?";
+            String comandoSQL = "select nome, ano, descricao from filmes where id >= ? and id <= ?";
             
             try (PreparedStatement ps = connection.prepareStatement(comandoSQL)) {
 
