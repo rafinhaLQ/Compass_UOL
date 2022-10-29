@@ -15,6 +15,6 @@ public class FilmeController {
         if (pagina == 2) {
             pagina = 11;
         }
-        return this.filmeDAO.listarComFiltro( pagina, quantidadeFilmes);
+        return this.filmeDAO.listarComFiltro(pagina, quantidadeFilmes);
     }
 }
