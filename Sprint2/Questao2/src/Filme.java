@@ -11,5 +11,8 @@ public class Filme {
         this.descricao = descricao;
     }
 
-    
+    @Override
+    public String toString() {
+        return String.format("%s (%d)\n%s", this.nome, this.ano, this.descricao);
+    }
 }
