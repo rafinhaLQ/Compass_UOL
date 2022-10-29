@@ -10,7 +10,11 @@ public class FilmeController {
         this.filmeDAO = new FilmeDAO(connection);
     }
 
-    public List<Filme> listarComFiltro(int id1, int id2) {
-        return this.filmeDAO.listarComFiltro(id1, id2);
+    public List<Filme> listarComFiltro(int pagina, int quantidadeFilmes) {
+        quantidadeFilmes += (pagina - 1) * 10;
+        if (pagina == 2) {
+            pagina = 11;
+        }
+        return this.filmeDAO.listarComFiltro( pagina, quantidadeFilmes);
     }
 }
