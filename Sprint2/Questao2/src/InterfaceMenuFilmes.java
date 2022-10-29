@@ -26,8 +26,10 @@ public class InterfaceMenuFilmes {
             System.out.println("Informe a quantidade de filmes que voce quer dessa pagina: ");
             quantidadeFilmesEmString = scan.nextLine();
             quantidadeFilmes = MudaTipoDado.mudaParaInt(quantidadeFilmesEmString);
-
+            System.out.printf("\nFilmes filtrados:\n");
             exibePaginas(filmeController, pagina, quantidadeFilmes);
+            System.out.println("Aperte enter para continuar!");
+            scan.nextLine(); //Simula pausa
         } while (pagina != 0);
         System.out.println("Saindo...");
     }
