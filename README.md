@@ -1,9 +1,20 @@
 <h1 align="center">Programa de Bolsas Spring Boot Compass_UOL</h1>
 Esse repositório contém as avaliações das sprints, de Rafael Luz de Queiroz, do programa de bolsas Spring Boot realizado pela empresa Compass_UOL.
 
+**********
+
+[Sprint 1](#sprint1)
+
+[Sprint 2](#sprint2)
+
+**********
+
+<div id='sprint1'/>
+
 ## Sprint 1
 
 **Questão 1**
+
 **a.** O tempo máximo da Daily deveria ser 15 minutos. Tendo em vista que a reunião é diaria e é necessário responder apenas 3 perguntas por membro.
 
 **b.** O tempo máximo da Planning deveria ser pelo menos 5 horas. Levando em consideração que temos que analisar o rendimento do time e planejar uma sprint que traga resultados significativos em relação ao tempo.
@@ -37,9 +48,17 @@ O sistema da questão 7 só tem suporte para um usuário, se tentar criar outro 
 
 
 
+
+
+
+<div id='sprint2'/>
+
 ## Sprint 2
+
 ### **Documentação**
+
 **Questão 1**
+
 O sistema da questão 1 foi desenvolvido em **Java 19**, utiliza as seguintes bibliotecas externas e as seguintes versões:
 * MySQL Connector Java 8.0.17
 * c3p0 0.9.5.4
@@ -47,3 +66,20 @@ O sistema da questão 1 foi desenvolvido em **Java 19**, utiliza as seguintes bi
 
 Para configuração do banco de dados. Está na pasta de ScriptsSQL, dentro de Sprint2, o script ScriptSQLQuestao1 para criação do esquema, e da tabela produtos.
 Também é importante no construtor da classe **ConnectionFactory.java** especificar a url, login e senha do seu banco.
+
+Segue também algumas imagens mostrando o funcionamento do sistema visualmente no banco de dados:
+* Banco depois de ser criado.
+
+![aposCriarBanco](https://user-images.githubusercontent.com/87668199/198833842-81a25823-f9c7-45f8-83e9-84a24d5c3ae6.png)
+
+* Banco depois de cadastrar os produtos.
+
+![aposCadastrarProdutos](https://user-images.githubusercontent.com/87668199/198833919-6d0622d3-861c-4ab0-ab59-3cf5d8d0d11f.png)
+
+* Banco depois de atualizar primeiro produto.
+
+![aposAtualizarPrimeiroProduto](https://user-images.githubusercontent.com/87668199/198833965-a2ae03c8-8703-4e63-92be-c3ea0df7b2df.png)
+
+* Banco depois de excluir o segundo produto.
+
+![aposExcluirSegundoProduto](https://user-images.githubusercontent.com/87668199/198834002-d518c9bd-8c87-47fc-8b32-d2726b89bbd4.png)
