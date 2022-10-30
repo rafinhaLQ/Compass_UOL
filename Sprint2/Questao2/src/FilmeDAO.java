@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilmeDAO {
-    
+
     private Connection connection;
 
     public FilmeDAO(Connection connection) {
@@ -17,7 +17,7 @@ public class FilmeDAO {
         try {
             List<Filme> filmes = new ArrayList<>();
             String comandoSQL = "select nome, ano, descricao from filmes where id >= ? and id <= ?";
-            
+
             try (PreparedStatement ps = connection.prepareStatement(comandoSQL)) {
 
                 ps.setInt(1, id1);
@@ -34,15 +34,15 @@ public class FilmeDAO {
 
     private void transformarResultSetEmFilmes(List<Filme> filmes, PreparedStatement ps) {
         try {
-			try (ResultSet rs = ps.getResultSet()) {
-				while (rs.next()) {
-					Filme filme = new Filme(rs.getString(1), rs.getInt(2), rs.getString(3));
+            try (ResultSet rs = ps.getResultSet()) {
+                while (rs.next()) {
+                    Filme filme = new Filme(rs.getString(1), rs.getInt(2), rs.getString(3));
 
-					filmes.add(filme);
-				}
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+                    filmes.add(filme);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

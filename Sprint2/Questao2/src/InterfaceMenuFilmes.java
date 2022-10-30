@@ -6,7 +6,7 @@ public class InterfaceMenuFilmes {
 
         Scanner scan = new Scanner(System.in);
         FilmeController filmeController = new FilmeController();
-        int pagina=0, quantidadeFilmes;
+        int pagina = 0, quantidadeFilmes;
 
         do {
             String paginaEmString, quantidadeFilmesEmString;
@@ -26,7 +26,7 @@ public class InterfaceMenuFilmes {
             else if (pagina != 1 && pagina != 2) {
                 System.out.printf("Pagina inexistente!\nTente novamente!\n");
                 System.out.println("Aperte enter para continuar!");
-                scan.nextLine(); //Simula pausa
+                scan.nextLine(); // Simula pausa
                 continue;
             }
             System.out.println("Informe a quantidade de filmes que voce quer dessa pagina: ");
@@ -35,13 +35,13 @@ public class InterfaceMenuFilmes {
             if (quantidadeFilmes > 10) {
                 System.out.printf("Quantidade inválida de filmes!\nTente novamente!\n");
                 System.out.println("Aperte enter para continuar!");
-                scan.nextLine(); //Simula pausa
+                scan.nextLine(); // Simula pausa
                 continue;
             }
             System.out.printf("\nFilmes filtrados:\n");
             exibePaginas(filmeController, pagina, quantidadeFilmes);
             System.out.println("Aperte enter para continuar!");
-            scan.nextLine(); //Simula pausa
+            scan.nextLine(); // Simula pausa
         } while (pagina != 0);
         System.out.println("Saindo...");
     }
