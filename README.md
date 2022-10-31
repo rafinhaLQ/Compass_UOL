@@ -44,6 +44,7 @@ As novas responsabilidades de José no seu novo cargo de Product Owner são: Apr
 
 ### **Documentação**
 **Questão 7**
+
 O sistema da questão 7 só tem suporte para um usuário, se tentar criar outro usuário ele será salvo no mesmo local do último usuário, assim o substituindo.
 
 
@@ -83,3 +84,23 @@ Segue também algumas imagens mostrando o funcionamento do sistema visualmente n
 * Banco depois de excluir o segundo produto.
 
 ![aposExcluirSegundoProduto](https://user-images.githubusercontent.com/87668199/198834002-d518c9bd-8c87-47fc-8b32-d2726b89bbd4.png)
+
+
+
+**Questão 2**
+
+O sistema da questão 2 foi desenvolvido em **Java 19**, utiliza as seguintes bibliotecas externas e as seguintes versões:
+* MySQL Connector Java 8.0.17
+* c3p0 0.9.5.4
+* Mchange Commons Java 0.2.16
+
+Para configuração do banco de dados. Está na pasta de ScriptsSQL, dentro de Sprint2, o script ScriptSQLQuestao2 para criação do esquema, da tabela filmes, e a inserção dos 20 filmes.
+Também é importante no construtor da classe **ConnectionFactory.java** especificar a url, login e senha do seu banco.
+
+Nesse sistema só tem 2 páginas de 10 filmes cada.
+
+
+
+**Questão 3**
+
+O programa da questão 3 recebe múltiplas entradas até receber uma entrada vazia, assim se encerrando.
