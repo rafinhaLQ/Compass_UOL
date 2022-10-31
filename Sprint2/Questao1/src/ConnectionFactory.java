@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class ConnectionFactory {
-    
+
     public DataSource dataSource;
 
     public ConnectionFactory() {
@@ -19,9 +19,9 @@ public class ConnectionFactory {
     }
 
     public Connection efetuarConexao() {
-        try{
+        try {
             return this.dataSource.getConnection();
-        } catch(SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,11 +1,11 @@
 import java.sql.Connection;
 
 public class ProdutoController {
-    
+
     private ProdutoDAO produtoDAO;
 
     public ProdutoController() {
-        Connection connection = new ConnectionFactory().efetuarConexao(); 
+        Connection connection = new ConnectionFactory().efetuarConexao();
         this.produtoDAO = new ProdutoDAO(connection);
     }
 

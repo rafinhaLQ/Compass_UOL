@@ -16,8 +16,8 @@ public class ProdutoDAO {
         try {
             String comandoSQL = "insert into produtos (nome, descricao, quantidade, preco) values (?, ?, ?, ?)";
 
-            try (PreparedStatement ps = connection.prepareStatement(comandoSQL, Statement.RETURN_GENERATED_KEYS)){
-                
+            try (PreparedStatement ps = connection.prepareStatement(comandoSQL, Statement.RETURN_GENERATED_KEYS)) {
+
                 ps.setString(1, produto.getNome());
                 ps.setString(2, produto.getDescricao());
                 ps.setInt(3, produto.getQuantidade());
