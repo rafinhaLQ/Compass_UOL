@@ -40,6 +40,7 @@ public class Emoticon {
             chateado = 0;
             mensagem = scan.nextLine();
 
+            //O programa se encerra quando recebe uma entrada vazia.
             if (mensagem.equals("")) {
                 scan.close();
                 break;
