@@ -21,9 +21,10 @@ public class InterfaceMenuFilmes {
             System.out.println("Informe a pagina que voce quer filtrar (Informe 0(zero) para sair): ");
             paginaEmString = scan.nextLine();
             pagina = MudaTipoDado.mudaParaInt(paginaEmString);
-            if (pagina == 0)
+            if (pagina == 0) {
+                scan.close();
                 break;
-            else if (pagina != 1 && pagina != 2) {
+            } else if (pagina != 1 && pagina != 2) {
                 System.out.printf("Pagina inexistente!\nTente novamente!\n");
                 System.out.println("Aperte enter para continuar!");
                 scan.nextLine(); // Simula pausa

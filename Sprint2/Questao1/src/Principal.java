@@ -26,7 +26,7 @@ public class Principal {
 
     public static void cadastraTresProdutos(ProdutoController produtoController) {
 
-        if (!produtosJaCadastrado){
+        if (!produtosJaCadastrado) {
             Produto detergente = new Produto("Detergente", "Detergente liquido Ypê 500ml neutro", 127, 3.32);
             Produto sabao = new Produto("Sabão em Pó", "Sabão em pó da marca Omo 1.6kg", 251, 14.90);
             Produto desinfetante = new Produto("Desinfetante", "Limpador perfumado Veja lavanda 500ml", 49, 11.99);
@@ -42,7 +42,7 @@ public class Principal {
 
     public static void atualizarPrimeiroProduto(ProdutoController produtoController) {
 
-        if (produtosJaCadastrado){
+        if (produtosJaCadastrado) {
             if (!produtoJaAtualizado) {
                 produtoController.atualizar(1, "Detergente Maçã", "Detergente Líquido Ypê Maçã 500 Ml", 92, 2.29);
                 produtoJaAtualizado = true;
@@ -57,7 +57,7 @@ public class Principal {
 
     public static void excluirSegundoProduto(ProdutoController produtoController) {
 
-        if (produtosJaCadastrado){
+        if (produtosJaCadastrado) {
             if (!produtoJaRemovido) {
                 produtoController.excluir(2);
                 produtoJaRemovido = true;
@@ -67,7 +67,7 @@ public class Principal {
         } else {
             System.out.println("Sem produtos para remover. Cadastre os produtos primeiro.");
         }
-        
+
     }
 
     public static void exibeMenu() {

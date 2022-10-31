@@ -6,7 +6,7 @@ public class MudaTipoDado {
         try {
             inteiro = Integer.parseInt(string);
         } catch (NumberFormatException e) {
-            inteiro = 3;
+            inteiro = 11;
         }
         return inteiro;
     }
