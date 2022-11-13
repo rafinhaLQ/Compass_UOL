@@ -15,9 +15,9 @@ public class Estado {
     private String nome;
     @Enumerated(EnumType.STRING)
     private Regiao regiao;
-    private Long população;
+    private Long populacao;
     private String capital;
     private Double area;
 
-    
+
 }
