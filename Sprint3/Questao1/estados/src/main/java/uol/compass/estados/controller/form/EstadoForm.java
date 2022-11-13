@@ -16,6 +16,10 @@ public class EstadoForm {
     private String capital;
     @NotNull @NotEmpty
     private String nomeRegiao;
+    @NotNull
+    private Long populacao;
+    @NotNull
+    private Double area;
 
     public String getNome() {
         return nome;
@@ -36,8 +40,21 @@ public class EstadoForm {
         this.nomeRegiao = nomeRegiao;
     }
 
+    public Long getPopulacao() {
+        return populacao;
+    }
+    public void setPopulacao(Long populacao) {
+        this.populacao = populacao;
+    }
+    public Double getArea() {
+        return area;
+    }
+    public void setArea(Double area) {
+        this.area = area;
+    }
+
     public Estado converter() {
         Regiao regiao = Regiao.valueOf(nomeRegiao);
-        return new Estado(nome, regiao, capital);
+        return new Estado(nome, regiao, populacao, capital, area);
     }
 }
