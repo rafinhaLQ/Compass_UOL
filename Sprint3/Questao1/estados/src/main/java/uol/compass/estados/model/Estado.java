@@ -22,6 +22,14 @@ public class Estado {
     public Estado() {
     }
 
+    public Estado(String nome, Regiao regiao, String capital) {
+        this.nome = nome;
+        this.regiao = regiao;
+        this.capital = capital;
+    }
+
+
+
     public Long getId() {
         return id;
     }
