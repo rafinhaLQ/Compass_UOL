@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: API de Estados
+  description: API para controlar informações dos estados brasileiros
+  termsOfService: https://github.com/rafinhaLQ/Compass_UOL
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/
+    description: API de Estados
+paths:
+  /states:
+    post:
+      summary: Cria um estado
+      description: Cria um estado recebendo informações no body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EstadoForm"
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estado"
+        500:
+          description: Região Inválida
+    get:
+      summary: Recupera os estados
+      description: Recupera os estados podendo ou não receber Região como parametro para filtragem
+      parameters:
+        - in: query
+          name: regiao
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estados"
+        400:
+          description: Região Inválida
+  /states/{id}:
+    get:
+      summary: Recupera um estado
+      description: Recupera um estado através do ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EstadoDetalhado"
+        404:
+          description: Not Found
+    put:
+      summary: Atualiza população de um estado
+      description: Recebe nova população através do body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AtualizacaoEstadoForm"
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EstadoDetalhado"
+        404:
+          description: Not Found
+    delete:
+      summary: Deleta um estado
+      description: Recebe id do estado que quer deletar através do path
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Sucesso
+        404:
+          description: Not Found
+components:
+  schemas:
+    Estado:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        capital:
+          type: string
+    Estados:
+      type: array
+      items:
+        $ref: "#/components/schemas/Estado"
+    EstadoDetalhado:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        regiao:
+          type: string
+          enum:
+            - Norte
+            - Nordeste
+            - Sul
+            - Sudeste
+            - Centro_Oeste
+        populacao:
+          type: number
+        capital:
+          type: string
+        area:
+          type: number
+    EstadoForm:
+      type: object
+      properties:
+        nome:
+          type: string
+        capital:
+          type: string
+        nomeRegiao:
+          type: string
+        populacao:
+          type: number
+        area:
+          type: number
+    AtualizacaoEstadoForm:
+      type: object
+      properties:
+        populacao:
+          type: number
