@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Length;
 
 import uol.compass.estados.model.Estado;
 import uol.compass.estados.model.Regiao;
-import uol.compass.estados.repository.RegiaoRepository;
 
 public class EstadoForm {
     
@@ -30,15 +29,15 @@ public class EstadoForm {
     public void setCapital(String capital) {
         this.capital = capital;
     }
-    public String getRegiao() {
+    public String getNomeRegiao() {
         return nomeRegiao;
     }
-    public void setRegiao(String nomeRegiao) {
+    public void setNomeRegiao(String nomeRegiao) {
         this.nomeRegiao = nomeRegiao;
     }
 
-    public Estado converter(RegiaoRepository regiaoRepository) {
-        Regiao regiao = regiaoRepository.findByNomeRegiao(nomeRegiao);
+    public Estado converter() {
+        Regiao regiao = Regiao.valueOf(nomeRegiao);
         return new Estado(nome, regiao, capital);
     }
 }

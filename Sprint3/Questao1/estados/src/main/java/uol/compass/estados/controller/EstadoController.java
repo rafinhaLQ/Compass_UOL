@@ -24,7 +24,6 @@ import uol.compass.estados.controller.form.EstadoForm;
 import uol.compass.estados.model.Estado;
 import uol.compass.estados.model.Regiao;
 import uol.compass.estados.repository.EstadoRepository;
-import uol.compass.estados.repository.RegiaoRepository;
 
 @RestController
 @RequestMapping("/states")
@@ -33,19 +32,16 @@ public class EstadoController {
     @Autowired
     private EstadoRepository estadoRepository;
 
-    @Autowired
-    private RegiaoRepository regiaoRepository;
-
     @PostMapping
     @Transactional
     public ResponseEntity<EstadoDto> cadastrar(@RequestBody @Valid EstadoForm estadoForm, UriComponentsBuilder uriBuilder) {
 
-        Estado estado = estadoForm.converter(regiaoRepository);
+        Estado estado = estadoForm.converter();
         estadoRepository.save(estado);
 
         URI uri = uriBuilder.path("/states/{id}").buildAndExpand(estado.getId()).toUri();
         return ResponseEntity.created(uri).body(new EstadoDto(estado));
-        
+
     }
 
     @GetMapping
