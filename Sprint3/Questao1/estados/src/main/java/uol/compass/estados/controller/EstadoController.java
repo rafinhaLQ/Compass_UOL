@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,11 +74,23 @@ public class EstadoController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<EstadoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstadoForm atualizacaoEstadoForm) {
+    public ResponseEntity<DetalhesDoEstadoDto> atualizar(@PathVariable Long id,
+        @RequestBody @Valid AtualizacaoEstadoForm atualizacaoEstadoForm) {
         Optional<Estado> optional = estadoRepository.findById(id);
         if (optional.isPresent()) {
             Estado estado = atualizacaoEstadoForm.atualizar(id, estadoRepository);
-            return ResponseEntity.ok(new EstadoDto(estado));
+            return ResponseEntity.ok(new DetalhesDoEstadoDto(estado));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> remover(@PathVariable Long id) {
+        Optional<Estado> optional = estadoRepository.findById(id);
+        if (optional.isPresent()) {
+            estadoRepository.deleteById(id);
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
     }
