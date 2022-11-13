@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uol.compass.estados.controller.dto.EstadoDto;
 import uol.compass.estados.model.Estado;
+import uol.compass.estados.model.Regiao;
 import uol.compass.estados.repository.EstadoRepository;
 
 @RestController
@@ -22,7 +23,7 @@ public class EstadoController {
     private EstadoRepository estadoRepository;
 
     @GetMapping
-    public Page<EstadoDto> lista(@RequestParam(required = false) String regiao, 
+    public Page<EstadoDto> lista(@RequestParam(required = false) Regiao  regiao, 
         @PageableDefault(sort = {"populacao", "area"}, direction = Direction.DESC) Pageable paginacao) {
         
         if (regiao==null) {
