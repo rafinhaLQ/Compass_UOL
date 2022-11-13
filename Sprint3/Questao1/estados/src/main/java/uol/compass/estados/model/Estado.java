@@ -18,4 +18,6 @@ public class Estado {
     private Long população;
     private String capital;
     private Double area;
+
+    
 }
