@@ -24,6 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import uol.compass.estados.controller.dto.DetalhesDoEstadoDto;
 import uol.compass.estados.controller.dto.EstadoDto;
+import uol.compass.estados.controller.form.AtualizacaoEstadoForm;
 import uol.compass.estados.controller.form.EstadoForm;
 import uol.compass.estados.model.Estado;
 import uol.compass.estados.model.Regiao;
@@ -70,7 +71,9 @@ public class EstadoController {
         return ResponseEntity.notFound().build();
     }
 
-    // @PutMapping("/{id}")
-    // @Transactional
-    // public ResponseEntity<EstadoDto> atualizar(@PathVariable Long id, @RequestBody @Valid )
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<EstadoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstadoForm atualizacaoEstadoForm) {
+        
+    }
 }
