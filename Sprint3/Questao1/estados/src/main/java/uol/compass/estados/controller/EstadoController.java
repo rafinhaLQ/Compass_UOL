@@ -74,6 +74,11 @@ public class EstadoController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<EstadoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstadoForm atualizacaoEstadoForm) {
-        
+        Optional<Estado> optional = estadoRepository.findById(id);
+        if (optional.isPresent()) {
+            Estado estado = atualizacaoEstadoForm.atualizar(id, estadoRepository);
+            return ResponseEntity.ok(new EstadoDto(estado));
+        }
+        return ResponseEntity.notFound().build();
     }
 }
