@@ -1,6 +1,7 @@
 package uol.compass.estados.controller;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import uol.compass.estados.controller.dto.DetalhesDoEstadoDto;
 import uol.compass.estados.controller.dto.EstadoDto;
 import uol.compass.estados.controller.form.EstadoForm;
 import uol.compass.estados.model.Estado;
@@ -55,5 +58,14 @@ public class EstadoController {
             Page<Estado> estados = estadoRepository.findByRegiao(regiao, paginacao);
             return EstadoDto.converter(estados);
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalhesDoEstadoDto> detalhar(@PathVariable Long id) {
+        Optional<Estado> estado = estadoRepository.findById(id);
+        if (estado.isPresent()) {
+            return ResponseEntity.ok(new DetalhesDoEstadoDto(estado.get()));
+        }
+        return ResponseEntity.notFound().build();
     }
 }
