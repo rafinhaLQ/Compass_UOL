@@ -7,9 +7,11 @@ Esse repositório contém as avaliações das sprints, de Rafael Luz de Queiroz,
 
 [Sprint 2](#sprint2)
 
+[Sprint 3](#sprint3)
+
 **********
 
-<div id='sprint1'/>
+<div id='sprint1'>
 
 ## Sprint 1
 
@@ -49,10 +51,7 @@ O sistema da questão 7 só tem suporte para um usuário, se tentar criar outro 
 
 
 
-
-
-
-<div id='sprint2'/>
+<div id='sprint2'>
 
 ## Sprint 2
 
@@ -104,3 +103,19 @@ Nesse sistema só tem 2 páginas de 10 filmes cada.
 **Questão 3**
 
 O programa da questão 3 recebe múltiplas entradas até receber uma entrada vazia, assim se encerrando.
+
+
+
+<div id='sprint3'>
+
+## Sprint 3
+
+### **Documentação**
+
+**Questão 1**
+
+O sistema da questão 1 foi desenvolvido em **Java 19**.
+
+O arquivo **.yaml** da documentação **Swagger** está em **src/main/resources/openapi.yaml**.
+
+O banco de dados está sendo inicializado com todos os estados do Brasil, no **data.sql**.
