@@ -119,3 +119,5 @@ O sistema da questão 1 foi desenvolvido em **Java 19**.
 O arquivo **.yaml** da documentação **Swagger** está em **src/main/resources/openapi.yaml**.
 
 O banco de dados está sendo inicializado com todos os estados do Brasil, no **data.sql**.
+
+No endpoint **PUT** os unicos atributos alterados serão o nome da Capital e a população, por razões que não faria muito sentido alterar os outros atributos.
