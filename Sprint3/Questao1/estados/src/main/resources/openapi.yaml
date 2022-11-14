@@ -4,6 +4,9 @@ info:
   description: API para controlar informações dos estados brasileiros
   termsOfService: https://github.com/rafinhaLQ/Compass_UOL
   version: 0.0.1
+  contact:
+    name: API Support
+    url: https://www.linkedin.com/in/rafaelluzdequeiroz/
 servers:
   - url: http://localhost:8080/
     description: API de Estados
@@ -25,6 +28,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Estado"
+        400:
+          description: Bad Request - Dado Inválido
         500:
           description: Região Inválida
     get:
@@ -65,8 +70,8 @@ paths:
         404:
           description: Not Found
     put:
-      summary: Atualiza população de um estado
-      description: Recebe nova população através do body
+      summary: Atualiza capital e população de um estado
+      description: Recebe nova capital e população através do body
       requestBody:
         required: true
         content:
@@ -87,7 +92,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/EstadoDetalhado"
         404:
-          description: Not Found
+          description: Not Found or Bad Request - Id ou Dados inválidos
     delete:
       summary: Deleta um estado
       description: Recebe id do estado que quer deletar através do path
@@ -154,5 +159,7 @@ components:
     AtualizacaoEstadoForm:
       type: object
       properties:
+        capital:
+          type: string
         populacao:
           type: number
