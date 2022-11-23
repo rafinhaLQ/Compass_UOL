@@ -15,4 +15,5 @@ public class Associado {
     private CargoPolitico cargoPolitico;
     private LocalDate dataNascimento;
     private Sexo sexo;
+    
 }
