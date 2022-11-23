@@ -1,4 +1,4 @@
-package uol.compass.sistemapolitico.model;
+package uol.compass.sistemapolitico.entidades;
 
 import java.time.LocalDate;
 
@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import uol.compass.sistemapolitico.enums.Ideologia;
 
 @Entity
 public class Partido {

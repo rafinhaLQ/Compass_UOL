@@ -1,4 +1,4 @@
-package uol.compass.sistemapolitico.model;
+package uol.compass.sistemapolitico.enums;
 
 public enum Ideologia {
     DIREITA,
