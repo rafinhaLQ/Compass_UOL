@@ -11,12 +11,14 @@ import uol.compass.sistemapolitico.enums.Sexo;
 public class AssociadoResponseDto {
 
     private Long id;
+    private String nome;
     private CargoPolitico cargoPolitico;
     private LocalDate dataNascimento;
     private Sexo sexo;
 
     public AssociadoResponseDto(Associado associado) {
         this.id = associado.getId();
+        this.nome = associado.getNome();
         this.cargoPolitico = associado.getCargoPolitico();
         this.dataNascimento = associado.getDataNascimento();
         this.sexo = associado.getSexo();
@@ -24,6 +26,10 @@ public class AssociadoResponseDto {
 
     public Long getId() {
         return id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public CargoPolitico getCargoPolitico() {

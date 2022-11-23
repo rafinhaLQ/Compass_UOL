@@ -16,11 +16,13 @@ public class Associado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
     private CargoPolitico cargoPolitico;
     private LocalDate dataNascimento;
     private Sexo sexo;
 
-    public Associado(CargoPolitico cargoPolitico, LocalDate dataNascimento, Sexo sexo) {
+    public Associado(String nome, CargoPolitico cargoPolitico, LocalDate dataNascimento, Sexo sexo) {
+        this.nome = nome;
         this.cargoPolitico = cargoPolitico;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
@@ -28,6 +30,10 @@ public class Associado {
 
     public Long getId() {
         return id;
+    }
+    
+    public String getNome() {
+        return nome;
     }
 
     public CargoPolitico getCargoPolitico() {
