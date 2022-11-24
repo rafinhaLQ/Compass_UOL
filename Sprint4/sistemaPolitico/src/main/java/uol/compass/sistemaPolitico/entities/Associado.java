@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
+
 @Entity
 @Table(name = "ASSOCIADOS")
 public class Associado {
