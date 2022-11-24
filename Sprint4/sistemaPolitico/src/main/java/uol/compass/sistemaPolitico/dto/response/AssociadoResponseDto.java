@@ -2,14 +2,14 @@ package uol.compass.sistemapolitico.dto.response;
 
 import java.time.LocalDate;
 
-import org.springframework.data.domain.Page;
-
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import uol.compass.sistemapolitico.entities.Associado;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
 @NoArgsConstructor
+@Getter
 public class AssociadoResponseDto {
 
     private Long id;
@@ -24,26 +24,6 @@ public class AssociadoResponseDto {
         this.cargoPolitico = associado.getCargoPolitico();
         this.dataNascimento = associado.getDataNascimento();
         this.sexo = associado.getSexo();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public CargoPolitico getCargoPolitico() {
-        return cargoPolitico;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
     }
 
 }

@@ -3,7 +3,6 @@ package uol.compass.sistemapolitico.controller;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,10 @@ import uol.compass.sistemapolitico.services.VinculadoService;
 @RequestMapping("/associados")
 public class AssociadoController {
 
+    @Autowired
     private AssociadoServiceImpl associadoService;
 
+    @Autowired
     private VinculadoService vinculadoService;
 
     @PostMapping

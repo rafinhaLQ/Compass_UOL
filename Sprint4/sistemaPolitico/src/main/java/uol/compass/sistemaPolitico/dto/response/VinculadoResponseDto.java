@@ -1,6 +1,5 @@
 package uol.compass.sistemapolitico.dto.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import uol.compass.sistemapolitico.entities.Vinculado;
 
