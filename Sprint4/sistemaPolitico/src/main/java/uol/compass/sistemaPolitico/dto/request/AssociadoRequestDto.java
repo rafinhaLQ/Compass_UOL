@@ -20,7 +20,7 @@ public class AssociadoRequestDto {
     @NotNull @Enumerated(EnumType.STRING)
     private CargoPolitico CargoPolitico;
     @NotNull @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     @NotNull @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
