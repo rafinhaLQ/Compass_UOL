@@ -16,15 +16,16 @@ import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
 import uol.compass.sistemapolitico.dto.request.VinculadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
 import uol.compass.sistemapolitico.dto.response.VinculadoResponseDto;
-import uol.compass.sistemapolitico.entities.Vinculado;
-import uol.compass.sistemapolitico.repository.VinculadoRepository;
 import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
+import uol.compass.sistemapolitico.services.VinculadoService;
 
 @RestController
 @RequestMapping("/associados")
 public class AssociadoController {
 
     private AssociadoServiceImpl associadoService;
+
+    private VinculadoService vinculadoService;
 
     @PostMapping
     @Transactional
@@ -36,9 +37,7 @@ public class AssociadoController {
     @PostMapping("/partidos")
     @Transactional
     public ResponseEntity<VinculadoResponseDto> vincula(@RequestBody @Valid VinculadoRequestDto request) {
-        Vinculado paraCriar = request.converterParaVinculado();
-        Vinculado criado = associadoVinculadoRepository.save(paraCriar);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(new VinculadoResponseDto(criado));
+        VinculadoResponseDto response = vinculadoService.vincula(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
