@@ -13,4 +13,24 @@ public class AssociadoResponseDto {
     private LocalDate dataNascimento;
     private Sexo sexo;
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public CargoPolitico getCargoPolitico() {
+        return cargoPolitico;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
 }
