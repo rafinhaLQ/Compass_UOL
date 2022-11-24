@@ -1,4 +1,4 @@
-package uol.compass.state.config;
+package uol.compass.sistemapolitico.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

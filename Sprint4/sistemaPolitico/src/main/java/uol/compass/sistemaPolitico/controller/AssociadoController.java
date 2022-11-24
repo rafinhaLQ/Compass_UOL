@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
 
@@ -24,9 +26,17 @@ public class AssociadoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<AssociadoRespostaDto> cadastra(@RequestBody @Valid AssociadoPedidotDto request) {
-        AssociadoRespostaDto response = associadoService.cadastra(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<AssociadoRespostaDto> cadastra(@RequestBody @Valid AssociadoPedidotDto pedido) {
+        AssociadoRespostaDto resposta = associadoService.cadastra(pedido);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
     }
+    
+    @PostMapping
+    @Transactional
+    public ResponseEntity<AssociaPartidoRespostaDto> vincula(@RequestBody @Valid AssociaPartidoPedidoDto pedido) {
+        AssociaPartidoRespostaDto resposta = associadoService.vincula(pedido);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(resposta);
+    }
+
     
 }
