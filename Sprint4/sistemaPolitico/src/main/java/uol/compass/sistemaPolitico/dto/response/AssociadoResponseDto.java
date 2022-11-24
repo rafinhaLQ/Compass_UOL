@@ -4,10 +4,12 @@ import java.time.LocalDate;
 
 import org.springframework.data.domain.Page;
 
+import lombok.NoArgsConstructor;
 import uol.compass.sistemapolitico.entities.Associado;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
+@NoArgsConstructor
 public class AssociadoResponseDto {
 
     private Long id;
@@ -15,9 +17,6 @@ public class AssociadoResponseDto {
     private CargoPolitico cargoPolitico;
     private LocalDate dataNascimento;
     private Sexo sexo;
-
-    public AssociadoResponseDto() {
-    }
 
     public AssociadoResponseDto(Associado associado) {
         this.id = associado.getId();

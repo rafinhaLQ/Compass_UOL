@@ -2,9 +2,9 @@ package uol.compass.sistemapolitico.dto.request;
 
 import javax.validation.constraints.NotNull;
 
-import uol.compass.sistemapolitico.entities.AssociadoVinculado;
+import uol.compass.sistemapolitico.entities.Vinculado;
 
-public class AssociadoVinculadoRequestDto {
+public class VinculadoRequestDto {
 
     @NotNull
     private Long idAssociado;
@@ -27,8 +27,8 @@ public class AssociadoVinculadoRequestDto {
         this.idPartido = idPartido;
     }
 
-    public AssociadoVinculado converterParaAssociadoVinculado() {
-        return new AssociadoVinculado(idAssociado, idPartido);
+    public Vinculado converterParaVinculado() {
+        return new Vinculado(idAssociado, idPartido);
     }
 
 }

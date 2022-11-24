@@ -13,39 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
-import uol.compass.sistemapolitico.dto.request.AssociadoVinculadoRequestDto;
+import uol.compass.sistemapolitico.dto.request.VinculadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
-import uol.compass.sistemapolitico.dto.response.AssociadoVinculadoResponseDto;
-import uol.compass.sistemapolitico.entities.Associado;
-import uol.compass.sistemapolitico.entities.AssociadoVinculado;
-import uol.compass.sistemapolitico.repository.AssociadoRepository;
-import uol.compass.sistemapolitico.repository.AssociadoVinculadoRepository;
+import uol.compass.sistemapolitico.dto.response.VinculadoResponseDto;
+import uol.compass.sistemapolitico.entities.Vinculado;
+import uol.compass.sistemapolitico.repository.VinculadoRepository;
+import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
 
 @RestController
 @RequestMapping("/associados")
 public class AssociadoController {
-    
-    @Autowired
-    private AssociadoRepository associadoRepository;
 
-    @Autowired
-    private AssociadoVinculadoRepository associadoVinculadoRepository;
+    private AssociadoServiceImpl associadoService;
 
     @PostMapping
     @Transactional
     public ResponseEntity<AssociadoResponseDto> cadastra(@RequestBody @Valid AssociadoRequestDto request) {
-        Associado paraCriar = request.converterParaAssociado();
-        Associado criado = associadoRepository.save(paraCriar);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(new AssociadoResponseDto(criado));
+        AssociadoResponseDto response = associadoService.cadastra(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
     @PostMapping("/partidos")
     @Transactional
-    public ResponseEntity<AssociadoVinculadoResponseDto> vincula(@RequestBody @Valid AssociadoVinculadoRequestDto request) {
-        AssociadoVinculado paraCriar = request.converterParaAssociadoVinculado();
-        AssociadoVinculado criado = associadoVinculadoRepository.save(paraCriar);
+    public ResponseEntity<VinculadoResponseDto> vincula(@RequestBody @Valid VinculadoRequestDto request) {
+        Vinculado paraCriar = request.converterParaVinculado();
+        Vinculado criado = associadoVinculadoRepository.save(paraCriar);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new AssociadoVinculadoResponseDto(criado));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new VinculadoResponseDto(criado));
     }
 }

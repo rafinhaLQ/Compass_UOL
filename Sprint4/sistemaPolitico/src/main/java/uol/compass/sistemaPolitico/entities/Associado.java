@@ -11,10 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
-
+@NoArgsConstructor
 @Entity
 @Table(name = "ASSOCIADOS")
 public class Associado {
@@ -33,9 +34,6 @@ public class Associado {
     @Enumerated(EnumType.STRING)
     @Column(name = "SEXO")
     private Sexo sexo;
-
-    public Associado() {
-    }
 
     public Associado(String nome, CargoPolitico cargoPolitico, LocalDate dataNascimento, Sexo sexo) {
         this.nome = nome;
