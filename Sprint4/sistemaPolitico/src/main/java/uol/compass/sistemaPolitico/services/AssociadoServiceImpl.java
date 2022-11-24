@@ -1,31 +1,32 @@
 package uol.compass.sistemapolitico.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
-import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
+import lombok.RequiredArgsConstructor;
+import uol.compass.sistemapolitico.dto.pedido.AssociadoRequestDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoResponseDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 
 @Service
+@RequiredArgsConstructor
 public class AssociadoServiceImpl implements AssociadoService {
 
-    private AssociadoRepository associadoRepository;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    public AssociadoServiceImpl(AssociadoRepository associadoRepository) {
-        this.associadoRepository = associadoRepository;
-    }
+    private final AssociadoRepository associadoRepository;
 
     @Override
-    public AssociadoResponseDto cadastra(AssociadoRequestDto request) {
-        Associado paraCriar = request.converterParaAssociado();
+    public AssociadoResponseDto cadastra(AssociadoRequestDto pedido) {
+        Associado paraCriar = modelMapper.map(pedido, Associado.class);
         Associado criado = associadoRepository.save(paraCriar);
+        AssociadoResponseDto resposta = modelMapper.map(criado, AssociadoResponseDto.class);
 
-        return new AssociadoResponseDto(criado);
+        return resposta;
     }
 
     @Override

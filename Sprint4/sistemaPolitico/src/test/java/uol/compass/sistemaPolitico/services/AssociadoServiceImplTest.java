@@ -4,49 +4,53 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
-import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
-import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
+import uol.compass.sistemapolitico.dto.pedido.AssociadoRequestDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoResponseDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 
+@ExtendWith(MockitoExtension.class)
 public class AssociadoServiceImplTest {
-
+    
+    @InjectMocks
     private AssociadoServiceImpl associadoService;
 
     @Mock
-    private AssociadoRepository repository;
+    private ModelMapper modelMapper;
 
-    @BeforeEach
-    void beforeEach() {
-        MockitoAnnotations.openMocks(this);
-        this.associadoService = new AssociadoServiceImpl(repository);
-    }
+
+    @Mock
+    private AssociadoRepository repository;
 
     @Test
     void deveriaCriarAssociadoComSucesso() {
         Associado paraCriar = new Associado();
         Associado criado = new Associado();
-        AssociadoRequestDto request = Mockito.mock(AssociadoRequestDto.class);
+        AssociadoResponseDto respostaTest = new AssociadoResponseDto();
+        AssociadoRequestDto pedido = Mockito.mock(AssociadoRequestDto.class);
         
-        Mockito.when(request.converterParaAssociado()).thenReturn(paraCriar);
+        Mockito.when(modelMapper.map(pedido, Associado.class)).thenReturn(paraCriar);
         Mockito.when(repository.save(paraCriar)).thenReturn(criado);
         
-        AssociadoResponseDto responseTest = new AssociadoResponseDto(criado);
+        Mockito.when(modelMapper.map(criado, AssociadoResponseDto.class)).thenReturn(respostaTest);
 
-        AssociadoResponseDto response = associadoService.cadastra(request);
+        AssociadoResponseDto resposta = associadoService.cadastra(pedido);
 
-        assertEquals(responseTest.getId(), response.getId());
-        assertEquals(responseTest.getNome(), response.getNome());
-        assertEquals(responseTest.getCargoPolitico(), response.getCargoPolitico());
-        assertEquals(responseTest.getDataNascimento(), response.getDataNascimento());
-        assertEquals(responseTest.getSexo(), response.getSexo());
+        assertEquals(respostaTest, resposta);
         verify(repository).save(any());
+    }
+
+    @Test
+    void deveriaEncontrarTodosOsAssociadosComSucesso() {
+        
     }
 
 }

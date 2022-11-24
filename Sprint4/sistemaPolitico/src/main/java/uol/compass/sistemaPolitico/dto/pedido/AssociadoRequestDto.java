@@ -1,4 +1,4 @@
-package uol.compass.sistemapolitico.dto.request;
+package uol.compass.sistemapolitico.dto.pedido;
 
 import java.time.LocalDate;
 
@@ -10,16 +10,17 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class AssociadoRequestDto {
 
     @NotBlank
@@ -36,9 +37,5 @@ public class AssociadoRequestDto {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
-
-    public Associado converterParaAssociado() {
-        return new Associado(nome, cargoPolitico, dataNascimento, sexo);
-    }
 
 }

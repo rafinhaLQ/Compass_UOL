@@ -3,8 +3,8 @@ package uol.compass.sistemapolitico.services;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
-import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
+import uol.compass.sistemapolitico.dto.pedido.AssociadoRequestDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoResponseDto;
 
 public interface AssociadoService {
     
