@@ -5,13 +5,14 @@ import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 
 public interface AssociadoService {
     
     AssociadoRespostaDto cadastra(AssociadoPedidotDto pedido);
 
-    AssociadoRespostaDto vincula(AssociaPartidoPedidoDto pedido);
+    AssociaPartidoRespostaDto vincula(AssociaPartidoPedidoDto pedido);
 
     Page<AssociadoRespostaDto> listar(Pageable pageable);
     

@@ -19,6 +19,7 @@ import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Associado;
+import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
 
@@ -56,15 +57,32 @@ public class AssociadoServiceImplTest {
     }
 
     @Test
-    void deveriaEncontrarTodosOsAssociadosComSucesso() {
-        Associado entidade = new Associado();
-        AssociaPartidoRespostaDto resposta = new AssociaPartidoRespostaDto();
+    void deveriaVincularAssociadoAUmPartidoComSucesso() {
+        Associado associadoParaCriar = new Associado();
+        Associado associadoCriado = new Associado();
+        AssociaPartidoRespostaDto respostaTest = new AssociaPartidoRespostaDto();
         AssociaPartidoPedidoDto pedido = Mockito.mock(AssociaPartidoPedidoDto.class);
 
-        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(entidade));
-        Mockito.when(modelMapper.map(any(), Associado.class)).thenReturn(entidade);
+        Partido partidoParaCriar = new Partido();
+        Partido partidoCriado = new Partido();
 
+        Mockito.when(associadoRepository.getReferenceById(pedido.getIdAssociado())).thenReturn(associadoParaCriar);
+        Mockito.when(partidoRepository.getReferenceById(pedido.getIdPartido())).thenReturn(partidoParaCriar);
+
+        associadoParaCriar.setPartido(partidoParaCriar);
+        partidoParaCriar.getAssociados().add(associadoCriado);
+
+        Mockito.when(associadoRepository.save(associadoParaCriar)).thenReturn(associadoCriado);
+        Mockito.when(partidoRepository.save(partidoParaCriar)).thenReturn(partidoCriado);
         
+        respostaTest.setAssociado(associadoCriado);
+        respostaTest.setPartido(partidoCriado);
+
+        AssociaPartidoRespostaDto resposta = associadoService.vincula(pedido);
+
+        assertEquals(respostaTest, resposta);
+        verify(associadoRepository).save(any());
+        verify(partidoRepository).save(any());
     }
 
 }
