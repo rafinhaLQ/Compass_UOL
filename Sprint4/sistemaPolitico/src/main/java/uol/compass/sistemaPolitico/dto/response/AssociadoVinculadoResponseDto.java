@@ -1,6 +1,6 @@
 package uol.compass.sistemapolitico.dto.response;
 
-import uol.compass.sistemapolitico.entidades.AssociadoVinculado;
+import uol.compass.sistemapolitico.entities.AssociadoVinculado;
 
 public class AssociadoVinculadoResponseDto {
 

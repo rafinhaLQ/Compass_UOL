@@ -2,7 +2,7 @@ package uol.compass.sistemapolitico.dto.request;
 
 import javax.validation.constraints.NotNull;
 
-import uol.compass.sistemapolitico.entidades.AssociadoVinculado;
+import uol.compass.sistemapolitico.entities.AssociadoVinculado;
 
 public class AssociadoVinculadoRequestDto {
 

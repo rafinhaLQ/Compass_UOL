@@ -16,8 +16,8 @@ import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
 import uol.compass.sistemapolitico.dto.request.AssociadoVinculadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoVinculadoResponseDto;
-import uol.compass.sistemapolitico.entidades.Associado;
-import uol.compass.sistemapolitico.entidades.AssociadoVinculado;
+import uol.compass.sistemapolitico.entities.Associado;
+import uol.compass.sistemapolitico.entities.AssociadoVinculado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 import uol.compass.sistemapolitico.repository.AssociadoVinculadoRepository;
 
