@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
+import uol.compass.sistemapolitico.dto.request.AssociadoVinculadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
+import uol.compass.sistemapolitico.dto.response.AssociadoVinculadoResponseDto;
 import uol.compass.sistemapolitico.entidades.Associado;
+import uol.compass.sistemapolitico.entidades.AssociadoVinculado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
+import uol.compass.sistemapolitico.repository.AssociadoVinculadoRepository;
 
 @RestController
 @RequestMapping("/associados")
@@ -24,18 +28,24 @@ public class AssociadoController {
     @Autowired
     private AssociadoRepository associadoRepository;
 
+    @Autowired
+    private AssociadoVinculadoRepository associadoVinculadoRepository;
+
     @PostMapping
     @Transactional
     public ResponseEntity<AssociadoResponseDto> cadastra(@RequestBody @Valid AssociadoRequestDto request) {
-        
-        Associado associadoParaCriar = request.converterParaAssociado();
-        Associado associadoCriado = associadoRepository.save(associadoParaCriar);
+        Associado paraCriar = request.converterParaAssociado();
+        Associado criado = associadoRepository.save(paraCriar);
 
-        AssociadoResponseDto response = AssociadoResponseDto.converterParaAssociadoResponseDto(associadoCriado);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
+        return ResponseEntity.status(HttpStatus.CREATED).body(new AssociadoResponseDto(criado));
     }
     
+    @PostMapping("/partidos")
+    @Transactional
+    public ResponseEntity<AssociadoVinculadoResponseDto> vincula(@RequestBody @Valid AssociadoVinculadoRequestDto request) {
+        AssociadoVinculado paraCriar = request.converterParaAssociadoVinculado();
+        AssociadoVinculado criado = associadoVinculadoRepository.save(paraCriar);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body(new AssociadoVinculadoResponseDto(criado));
+    }
 }

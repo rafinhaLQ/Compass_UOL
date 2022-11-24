@@ -44,8 +44,4 @@ public class AssociadoResponseDto {
         return sexo;
     }
 
-    public static AssociadoResponseDto converterParaAssociadoResponseDto(Associado associado) {
-        return new AssociadoResponseDto(associado);
-    }
-
 }
