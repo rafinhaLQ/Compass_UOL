@@ -21,7 +21,7 @@ import uol.compass.sistemapolitico.enums.Sexo;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssociadoRequestDto {
+public class AssociadoPedidotDto {
 
     @NotBlank
     private String nome;

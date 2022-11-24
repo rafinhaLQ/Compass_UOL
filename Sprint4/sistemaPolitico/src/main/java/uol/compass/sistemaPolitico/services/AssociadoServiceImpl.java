@@ -7,8 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.sistemapolitico.dto.pedido.AssociadoRequestDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoResponseDto;
+import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
+import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 
@@ -21,28 +22,34 @@ public class AssociadoServiceImpl implements AssociadoService {
     private final AssociadoRepository associadoRepository;
 
     @Override
-    public AssociadoResponseDto cadastra(AssociadoRequestDto pedido) {
+    public AssociadoRespostaDto cadastra(AssociadoPedidotDto pedido) {
         Associado paraCriar = modelMapper.map(pedido, Associado.class);
         Associado criado = associadoRepository.save(paraCriar);
-        AssociadoResponseDto resposta = modelMapper.map(criado, AssociadoResponseDto.class);
+        AssociadoRespostaDto resposta = modelMapper.map(criado, AssociadoRespostaDto.class);
 
         return resposta;
     }
 
     @Override
-    public Page<AssociadoResponseDto> listar(Pageable pageable) {
+    public AssociadoRespostaDto vincula(AssociaPartidoPedidoDto pedido) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public AssociadoResponseDto buscarPorId(Long id) {
+    public Page<AssociadoRespostaDto> listar(Pageable pageable) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public AssociadoResponseDto alterar(Long id, AssociadoRequestDto request) {
+    public AssociadoRespostaDto buscarPorId(Long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public AssociadoRespostaDto alterar(Long id, AssociadoPedidotDto request) {
         // TODO Auto-generated method stub
         return null;
     }
