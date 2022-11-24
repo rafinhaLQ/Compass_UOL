@@ -58,12 +58,12 @@ public class AssociadoServiceImplTest {
 
     @Test
     void deveriaVincularAssociadoAUmPartidoComSucesso() {
-        Associado associadoParaCriar = new Associado();
+        Associado associadoParaCriar = Mockito.mock(Associado.class);
         Associado associadoCriado = new Associado();
         AssociaPartidoRespostaDto respostaTest = new AssociaPartidoRespostaDto();
         AssociaPartidoPedidoDto pedido = Mockito.mock(AssociaPartidoPedidoDto.class);
 
-        Partido partidoParaCriar = new Partido();
+        Partido partidoParaCriar = Mockito.mock(Partido.class);
         Partido partidoCriado = new Partido();
 
         Mockito.when(associadoRepository.getReferenceById(pedido.getIdAssociado())).thenReturn(associadoParaCriar);
