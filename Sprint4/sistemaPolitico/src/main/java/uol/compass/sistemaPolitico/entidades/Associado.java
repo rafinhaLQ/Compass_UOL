@@ -33,6 +33,9 @@ public class Associado {
     @Column(name = "SEXO")
     private Sexo sexo;
 
+    public Associado() {
+    }
+
     public Associado(String nome, CargoPolitico cargoPolitico, LocalDate dataNascimento, Sexo sexo) {
         this.nome = nome;
         this.cargoPolitico = cargoPolitico;

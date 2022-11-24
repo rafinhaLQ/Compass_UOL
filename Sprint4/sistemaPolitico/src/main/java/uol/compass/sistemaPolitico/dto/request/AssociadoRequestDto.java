@@ -4,27 +4,29 @@ import java.time.LocalDate;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
+import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
 public class AssociadoRequestDto {
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 5)
+    @NotBlank
     private String nome;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private CargoPolitico cargoPolitico;
+
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dataNascimento;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
@@ -59,6 +61,10 @@ public class AssociadoRequestDto {
 
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
+    }
+
+    public Associado converterParaAssociado() {
+        return new Associado(nome, cargoPolitico, dataNascimento, sexo);
     }
 
 }

@@ -23,17 +23,15 @@ public class AssociadoController {
     
     @Autowired
     private AssociadoRepository associadoRepository;
-    
-    private final ModelMapper modelMapper = new ModelMapper();
 
     @PostMapping
     @Transactional
     public ResponseEntity<AssociadoResponseDto> cadastra(@RequestBody @Valid AssociadoRequestDto request) {
         
-        Associado associadoParaCriar = modelMapper.map(request, Associado.class);
+        Associado associadoParaCriar = request.converterParaAssociado();
         Associado associadoCriado = associadoRepository.save(associadoParaCriar);
 
-        AssociadoResponseDto response = modelMapper.map(associadoCriado, AssociadoResponseDto.class);
+        AssociadoResponseDto response = AssociadoResponseDto.converterParaAssociadoResponseDto(associadoCriado);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
