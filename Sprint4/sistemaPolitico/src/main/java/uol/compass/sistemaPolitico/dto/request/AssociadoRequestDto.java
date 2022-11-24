@@ -10,11 +10,15 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import uol.compass.sistemapolitico.entities.Associado;
+import lombok.Setter;
+import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 
+@Getter
+@Setter
 @NoArgsConstructor
 public class AssociadoRequestDto {
 
@@ -32,38 +36,6 @@ public class AssociadoRequestDto {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public CargoPolitico getCargoPolitico() {
-        return cargoPolitico;
-    }
-
-    public void setCargoPolitico(CargoPolitico cargoPolitico) {
-        this.cargoPolitico = cargoPolitico;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
-    }
 
     public Associado converterParaAssociado() {
         return new Associado(nome, cargoPolitico, dataNascimento, sexo);

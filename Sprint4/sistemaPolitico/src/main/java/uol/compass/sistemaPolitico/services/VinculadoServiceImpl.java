@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import uol.compass.sistemapolitico.dto.request.VinculadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.VinculadoResponseDto;
-import uol.compass.sistemapolitico.entities.Vinculado;
+import uol.compass.sistemapolitico.entidades.Vinculado;
 import uol.compass.sistemapolitico.repository.VinculadoRepository;
 
 @Service
@@ -20,10 +20,10 @@ public class VinculadoServiceImpl implements VinculadoService {
 
     @Override
     public VinculadoResponseDto vincula(VinculadoRequestDto request) {
-        Vinculado toCreate = request.converterParaVinculado();
-        Vinculado created = repository.save(toCreate);
+        Vinculado paraCriar = request.converterParaVinculado();
+        Vinculado criado = repository.save(paraCriar);
 
-        return new VinculadoResponseDto(created);
+        return new VinculadoResponseDto(criado);
     }
 
 }

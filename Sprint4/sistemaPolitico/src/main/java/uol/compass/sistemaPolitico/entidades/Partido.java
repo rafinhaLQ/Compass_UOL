@@ -1,4 +1,4 @@
-package uol.compass.sistemapolitico.entities;
+package uol.compass.sistemapolitico.entidades;
 
 import java.time.LocalDate;
 

@@ -1,7 +1,7 @@
 package uol.compass.sistemapolitico.dto.response;
 
 import lombok.Getter;
-import uol.compass.sistemapolitico.entities.Vinculado;
+import uol.compass.sistemapolitico.entidades.Vinculado;
 
 @Getter
 public class VinculadoResponseDto {

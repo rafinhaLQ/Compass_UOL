@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 
 import uol.compass.sistemapolitico.dto.request.VinculadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.VinculadoResponseDto;
-import uol.compass.sistemapolitico.entities.Vinculado;
+import uol.compass.sistemapolitico.entidades.Vinculado;
 import uol.compass.sistemapolitico.repository.VinculadoRepository;
 
 public class VinculadoServiceImplTest {
@@ -30,14 +30,14 @@ public class VinculadoServiceImplTest {
 
     @Test
     void deveriaCriarVinculoComSucesso() {
-        Vinculado toCreate = new Vinculado();
-        Vinculado created = new Vinculado();
+        Vinculado paraCriar = new Vinculado();
+        Vinculado criado = new Vinculado();
         VinculadoRequestDto request = Mockito.mock(VinculadoRequestDto.class);
         
-        Mockito.when(request.converterParaVinculado()).thenReturn(toCreate);
-        Mockito.when(repository.save(toCreate)).thenReturn(created);
+        Mockito.when(request.converterParaVinculado()).thenReturn(paraCriar);
+        Mockito.when(repository.save(paraCriar)).thenReturn(criado);
         
-        VinculadoResponseDto responseTest = new VinculadoResponseDto(created);
+        VinculadoResponseDto responseTest = new VinculadoResponseDto(criado);
         VinculadoResponseDto response = vinculadoService.vincula(request);
 
         assertEquals(responseTest.getIdAssociado(), response.getIdAssociado());

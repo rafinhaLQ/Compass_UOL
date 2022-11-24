@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import uol.compass.sistemapolitico.entities.Associado;
+import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.enums.Sexo;
 

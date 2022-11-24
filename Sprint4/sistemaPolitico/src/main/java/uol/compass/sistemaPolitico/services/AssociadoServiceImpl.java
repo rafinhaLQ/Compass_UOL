@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
-import uol.compass.sistemapolitico.entities.Associado;
+import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 
 @Service
@@ -22,10 +22,10 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public AssociadoResponseDto cadastra(AssociadoRequestDto request) {
-        Associado toCreate = request.converterParaAssociado();
-        Associado created = associadoRepository.save(toCreate);
+        Associado paraCriar = request.converterParaAssociado();
+        Associado criado = associadoRepository.save(paraCriar);
 
-        return new AssociadoResponseDto(created);
+        return new AssociadoResponseDto(criado);
     }
 
     @Override

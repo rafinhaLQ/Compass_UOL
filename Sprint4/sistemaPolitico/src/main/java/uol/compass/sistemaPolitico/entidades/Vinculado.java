@@ -1,4 +1,4 @@
-package uol.compass.sistemapolitico.entities;
+package uol.compass.sistemapolitico.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

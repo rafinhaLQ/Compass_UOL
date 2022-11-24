@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 
 import uol.compass.sistemapolitico.dto.request.AssociadoRequestDto;
 import uol.compass.sistemapolitico.dto.response.AssociadoResponseDto;
-import uol.compass.sistemapolitico.entities.Associado;
+import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 
 public class AssociadoServiceImplTest {
@@ -30,14 +30,14 @@ public class AssociadoServiceImplTest {
 
     @Test
     void deveriaCriarAssociadoComSucesso() {
-        Associado toCreate = new Associado();
-        Associado created = new Associado();
+        Associado paraCriar = new Associado();
+        Associado criado = new Associado();
         AssociadoRequestDto request = Mockito.mock(AssociadoRequestDto.class);
         
-        Mockito.when(request.converterParaAssociado()).thenReturn(toCreate);
-        Mockito.when(repository.save(toCreate)).thenReturn(created);
+        Mockito.when(request.converterParaAssociado()).thenReturn(paraCriar);
+        Mockito.when(repository.save(paraCriar)).thenReturn(criado);
         
-        AssociadoResponseDto responseTest = new AssociadoResponseDto(created);
+        AssociadoResponseDto responseTest = new AssociadoResponseDto(criado);
 
         AssociadoResponseDto response = associadoService.cadastra(request);
 
