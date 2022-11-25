@@ -49,7 +49,7 @@ public class AssociadoServiceImpl implements AssociadoService {
 
         partidoParaVincular.getAssociados().add(associado);
         partidoParaVincular.getAssociados().forEach(associadoNaLista -> associadoNaLista.setPartidoId(partidoParaVincular));
-        
+
         Partido partidoVinculado = partidoRepository.save(partidoParaVincular);
 
         return new AssociadoVinculadoDto(partidoVinculado, associado);
@@ -89,9 +89,22 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public void desvincula(Long id_associado, Long id_partido) {
-        // TODO Auto-generated method stub
-        
+    public void desvincula(Long idAssociado, Long idPartido) {
+        Partido partido = modelMapper.map(partidoService.buscarPorId(idPartido),
+                    Partido.class);
+        Associado associado = getAssociado(idAssociado);
+
+        associado.setPartidoId(null);
+        partido.getAssociados().remove(associado);
+
+        partidoRepository.save(partido);
+
+    }
+
+    public AssociadoParametrosResposta listarPorPartido(Partido partido, Pageable paginacao) {
+        Page<Associado> pagina = associadoRepository.findAllByPartidoId(partido, paginacao);
+
+        return criarParametrosDeRespostaDeAssociados(pagina);
     }
 
     private Associado getAssociado(Long id) {

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Partido;
@@ -23,6 +24,8 @@ public class PartidoServiceImpl implements PartidoService {
     private final ModelMapper modelMapper;
 
     private final PartidoRepository partidoRepository;
+
+    private final AssociadoServiceImpl associadoService;
 
     @Override
     public PartidoRespostaDto cadastra(PartidoPedidoDto pedido) {
@@ -47,9 +50,10 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public PartidoParametrosResposta buscarAssociadosPorPartido(Long id, Pageable pagina) {
-        // TODO Auto-generated method stub
-        return null;
+    public AssociadoParametrosResposta buscarAssociadosPorPartido(Long id, Pageable pagina) {
+        Partido partido = getPartido(id);
+
+        return associadoService.listarPorPartido(partido, pagina);
     }
 
     @Override

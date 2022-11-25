@@ -3,7 +3,6 @@ package uol.compass.sistemapolitico.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class AssociadoServiceImplTest {
     private PartidoRepository partidoRepository;
 
     @Mock
-    private PartidoService partidoService;
+    private PartidoServiceImpl partidoService;
 
     @Test
     void deveriaCriarAssociadoComSucesso() {
@@ -79,9 +78,7 @@ public class AssociadoServiceImplTest {
         Mockito.when(partidoService.buscarPorId(any())).thenReturn(partidoDto);
         Mockito.when(modelMapper.map(any(), eq(Partido.class))).thenReturn(partidoParaSalvar);
         Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
-        Mockito.when(modelMapper.map(any(), eq(Associado.class))).thenReturn(associado);
 
-        partidoParaSalvar.getAssociados().add(associado);
         associado.setPartidoId(partidoParaSalvar);
 
         Mockito.when(partidoRepository.save(any())).thenReturn(partidoSalvo);

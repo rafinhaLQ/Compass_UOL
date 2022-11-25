@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.services.PartidoServiceImpl;
@@ -42,6 +43,12 @@ public class PartidoController {
     @GetMapping("/{id}")
     public ResponseEntity<PartidoRespostaDto> buscaPorId(@PathVariable("id") Long id) {
         PartidoRespostaDto resposta = partidoService.buscarPorId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(resposta);
+    }
+
+    @GetMapping("/{id}/associados")
+    public ResponseEntity<AssociadoParametrosResposta> listaAssociadosPorPartido(@PathVariable("id") Long id, Pageable paginacao) {
+        AssociadoParametrosResposta resposta = partidoService.buscarAssociadosPorPartido(id, paginacao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 

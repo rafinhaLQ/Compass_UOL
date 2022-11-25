@@ -23,6 +23,6 @@ public interface AssociadoService {
     
     void deletar(Long id);
 
-    void desvincula(Long id_associado, Long id_partido);
+    void desvincula(Long idAssociado, Long idPartido);
     
 }

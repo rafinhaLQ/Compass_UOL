@@ -69,5 +69,10 @@ public class AssociadoController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id1}/partidos/{id2}")
+    public ResponseEntity<Void> desvincula(@PathVariable("id1") Long idAssociado, @PathVariable("id2") Long idPartido) {
+        associadoService.desvincula(idAssociado, idPartido);
+        return ResponseEntity.noContent().build();
+    }
 
 }
