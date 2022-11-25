@@ -42,7 +42,7 @@ public class AssociadoController {
     }
 
     @GetMapping
-    public ResponseEntity<AssociadoParametrosResposta> listar(Pageable paginacao) {
+    public ResponseEntity<AssociadoParametrosResposta> lista(Pageable paginacao) {
         AssociadoParametrosResposta resposta = associadoService.listar(paginacao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }

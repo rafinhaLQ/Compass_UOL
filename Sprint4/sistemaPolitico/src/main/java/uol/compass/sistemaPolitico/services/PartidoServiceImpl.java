@@ -1,6 +1,10 @@
 package uol.compass.sistemapolitico.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +32,10 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public PartidoParametrosResposta listar(Pageable pagina) {
-        // TODO Auto-generated method stub
-        return null;
+    public PartidoParametrosResposta listar(Pageable paginacao) {
+        Page<Partido> pagina = partidoRepository.findAll(paginacao);
+
+        return criaParametrosDeRespostaDePartidos(pagina);
     }
 
     @Override
@@ -55,6 +60,23 @@ public class PartidoServiceImpl implements PartidoService {
     public void deletar(Long id) {
         // TODO Auto-generated method stub
         
+    }
+
+    private PartidoParametrosResposta criaParametrosDeRespostaDePartidos(Page<Partido> pagina) {
+        List<PartidoRespostaDto> partidos = pagina.stream()
+                                .map(this::criaRespostaDePartidos)
+                                .collect(Collectors.toList());
+        
+        return PartidoParametrosResposta.builder()
+                                    .numeroDeElementos(pagina.getNumberOfElements())
+                                    .totalDeElementos(pagina.getTotalElements())
+                                    .totalDePaginas(pagina.getTotalPages())
+                                    .partidos(partidos)
+                                    .build();
+    }
+
+    private PartidoRespostaDto criaRespostaDePartidos(Partido partido) {
+        return modelMapper.map(partido, PartidoRespostaDto.class);
     }
 
 }

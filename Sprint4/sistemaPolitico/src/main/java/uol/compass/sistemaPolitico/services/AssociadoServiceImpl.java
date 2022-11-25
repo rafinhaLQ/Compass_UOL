@@ -103,7 +103,7 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     private AssociadoParametrosResposta criarParametrosDeRespostaDeAssociados(Page<Associado> pagina) {
         List<AssociadoRespostaDto> associados = pagina.stream()
-                                .map(this::criarRespostaDeAssociados)
+                                .map(this::criaRespostaDeAssociados)
                                 .collect(Collectors.toList());
 
         return AssociadoParametrosResposta.builder()
@@ -114,7 +114,7 @@ public class AssociadoServiceImpl implements AssociadoService {
                                 .build();
     }
 
-    private AssociadoRespostaDto criarRespostaDeAssociados(Associado associado) {
+    private AssociadoRespostaDto criaRespostaDeAssociados(Associado associado) {
         return modelMapper.map(associado, AssociadoRespostaDto.class);
     }
 
