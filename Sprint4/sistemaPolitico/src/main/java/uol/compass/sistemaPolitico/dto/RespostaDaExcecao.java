@@ -5,8 +5,7 @@ import java.util.Collections;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import uol.compass.sistemapolitico.constantes.CodigoDeErroAssociado;
-import uol.compass.sistemapolitico.constantes.CodigoDeErroPartido;
+import uol.compass.sistemapolitico.constantes.CodigosDeErro;
 
 @Data
 @AllArgsConstructor
@@ -18,35 +17,20 @@ public class RespostaDaExcecao {
 
     private final List<String> detalhes;
 
-    public RespostaDaExcecao(CodigoDeErroAssociado codigoDeErro, Throwable ex) {
+    public RespostaDaExcecao(CodigosDeErro codigoDeErro, Throwable ex) {
         this(codigoDeErro, ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage());
     }
 
-    public RespostaDaExcecao(CodigoDeErroAssociado codigoDeErro, String detalhes){
+    public RespostaDaExcecao(CodigosDeErro codigoDeErro, String detalhes){
         this.codigo = codigoDeErro.name();
         this.mensagem = codigoDeErro.getMensagem();
         this.detalhes = Collections.singletonList(detalhes);
     }
 
-    public RespostaDaExcecao(CodigoDeErroAssociado codigoDeErro, List<String> detalhes){
+    public RespostaDaExcecao(CodigosDeErro codigoDeErro, List<String> detalhes){
         this.codigo = codigoDeErro.name();
         this.mensagem = codigoDeErro.getMensagem();
         this.detalhes = detalhes;
     }
 
-    public RespostaDaExcecao(CodigoDeErroPartido codigoDeErro, Throwable ex) {
-        this(codigoDeErro, ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage());
-    }
-
-    public RespostaDaExcecao(CodigoDeErroPartido codigoDeErro, String detalhes){
-        this.codigo = codigoDeErro.name();
-        this.mensagem = codigoDeErro.getMensagem();
-        this.detalhes = Collections.singletonList(detalhes);
-    }
-
-    public RespostaDaExcecao(CodigoDeErroPartido codigoDeErro, List<String> detalhes){
-        this.codigo = codigoDeErro.name();
-        this.mensagem = codigoDeErro.getMensagem();
-        this.detalhes = detalhes;
-    }
 }
