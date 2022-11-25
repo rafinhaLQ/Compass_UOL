@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
 
@@ -42,8 +42,8 @@ public class AssociadoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<AssociadoRespostaDto>> listar(Pageable paginacao) {
-        Page<AssociadoRespostaDto> resposta = associadoService.listar(paginacao);
+    public ResponseEntity<AssociadoParametrosResposta> listar(Pageable paginacao) {
+        AssociadoParametrosResposta resposta = associadoService.listar(paginacao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 

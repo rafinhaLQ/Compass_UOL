@@ -22,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
@@ -52,7 +53,7 @@ public class AssociadoServiceImplTest {
         AssociadoRespostaDto respostaEsperada = new AssociadoRespostaDto();
         
         Mockito.when(modelMapper.map(any(), eq(Associado.class))).thenReturn(associado);
-        Mockito.when(associadoRepository.save(associado)).thenReturn(associado);
+        Mockito.when(associadoRepository.save(any())).thenReturn(associado);
         Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(respostaEsperada);
         
         AssociadoRespostaDto resposta = associadoService.cadastra(pedido);
@@ -95,16 +96,15 @@ public class AssociadoServiceImplTest {
     void deveriaListarTodosOsAssociadosComSucesso() {
         Associado associado = new Associado();
         AssociadoRespostaDto resposta = new AssociadoRespostaDto();
-        Page<Associado> paginaAssociado = new PageImpl<>(List.of(associado));
-        Page<AssociadoRespostaDto> paginaEsperada = new PageImpl<>(List.of(resposta));
+        Page<Associado> pagina = new PageImpl<>(List.of(associado));
+        AssociadoParametrosResposta respostaDeParametrosEsperada = criaRespostaDeParametrosDeAssociados();
 
-        Mockito.when(associadoRepository.findAll((Pageable) any())).thenReturn(paginaAssociado);
+        Mockito.when(associadoRepository.findAll((Pageable) any())).thenReturn(pagina);
+        Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(resposta);
         
-        paginaAssociado.map(AssociadoRespostaDto::new);
-        
-        Page<AssociadoRespostaDto> pagina = associadoService.listar(any(Pageable.class));
+        AssociadoParametrosResposta respostaDeParametros = associadoService.listar(any(Pageable.class));
 
-        assertEquals(paginaEsperada, pagina);
+        assertEquals(respostaDeParametrosEsperada, respostaDeParametros);
     }
 
     @Test
@@ -146,6 +146,15 @@ public class AssociadoServiceImplTest {
         associadoService.deletar(ID);
 
         verify(associadoRepository).deleteById(any());
+    }
+
+    private AssociadoParametrosResposta criaRespostaDeParametrosDeAssociados() {
+        return AssociadoParametrosResposta.builder()
+                    .numeroDeElementos(1)
+                    .totalDeElementos(1L)
+                    .totalDePaginas(1)
+                    .associados(List.of(new AssociadoRespostaDto()))
+                    .build();
     }
 
 }

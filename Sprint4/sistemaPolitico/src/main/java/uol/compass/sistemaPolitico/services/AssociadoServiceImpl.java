@@ -1,5 +1,8 @@
 package uol.compass.sistemapolitico.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
@@ -56,11 +60,10 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public Page<AssociadoRespostaDto> listar(Pageable paginacao) {        
-        Page<Associado> associados = associadoRepository.findAll(paginacao);
-        Page<AssociadoRespostaDto> resposta = associados.map(AssociadoRespostaDto::new);
+    public AssociadoParametrosResposta listar(Pageable paginacao) {        
+        Page<Associado> pagina = associadoRepository.findAll(paginacao);
 
-        return resposta;
+        return criarParametrosDeRespostaDeAssociados(pagina);
     }
 
     @Override
@@ -90,6 +93,29 @@ public class AssociadoServiceImpl implements AssociadoService {
     private Associado getAssociado(Long id) {
         return associadoRepository.findById(id)
                     .orElseThrow(AssociadoNaoEncontradoException::new);
+    }
+
+    @Override
+    public void desvincula(Long id_associado, Long id_partido) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    private AssociadoParametrosResposta criarParametrosDeRespostaDeAssociados(Page<Associado> pagina) {
+        List<AssociadoRespostaDto> associados = pagina.stream()
+                                .map(this::criarRespostaDeAssociados)
+                                .collect(Collectors.toList());
+
+        return AssociadoParametrosResposta.builder()
+                                .numeroDeElementos(pagina.getNumberOfElements())
+                                .totalDeElementos(pagina.getTotalElements())
+                                .totalDePaginas(pagina.getTotalPages())
+                                .associados(associados)
+                                .build();
+    }
+
+    private AssociadoRespostaDto criarRespostaDeAssociados(Associado associado) {
+        return modelMapper.map(associado, AssociadoRespostaDto.class);
     }
 
 }
