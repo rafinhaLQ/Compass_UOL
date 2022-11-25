@@ -54,8 +54,7 @@ public class AssociadoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AssociadoRespostaDto> altera(@PathVariable("id") Long id,
-                                    @RequestBody @Valid AssociadoPedidotDto pedido) {
+    public ResponseEntity<AssociadoRespostaDto> altera(@PathVariable("id") Long id, @RequestBody @Valid AssociadoPedidotDto pedido) {
         AssociadoRespostaDto resposta = associadoService.alterar(id, pedido);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }

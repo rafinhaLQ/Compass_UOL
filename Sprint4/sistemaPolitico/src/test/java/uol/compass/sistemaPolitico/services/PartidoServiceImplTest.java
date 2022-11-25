@@ -83,6 +83,23 @@ public class PartidoServiceImplTest {
         assertEquals(respostaEsperada, resposta);
     }
 
+    @Test 
+    void deveriaAlterarPartidoComSucesso() {
+        Partido partido = new Partido();
+        PartidoRespostaDto respostaEsperada = new PartidoRespostaDto();
+        PartidoPedidoDto pedido = new PartidoPedidoDto();
+
+        Mockito.when(partidoRepository.findById(any())).thenReturn(Optional.of(partido));
+        Mockito.when(modelMapper.map(any(), eq(Partido.class))).thenReturn(partido);
+        Mockito.when(partidoRepository.save(any())).thenReturn(partido);
+        Mockito.when(modelMapper.map(any(), eq(PartidoRespostaDto.class))).thenReturn(respostaEsperada);
+
+        PartidoRespostaDto resposta = partidoService.alterar(ID, pedido);
+
+        assertEquals(respostaEsperada, resposta);
+        verify(partidoRepository).save(any());
+    }
+
     private PartidoParametrosResposta criaRespostaDeParametrosDePartidos() {
         return PartidoParametrosResposta.builder()
                     .numeroDeElementos(1)

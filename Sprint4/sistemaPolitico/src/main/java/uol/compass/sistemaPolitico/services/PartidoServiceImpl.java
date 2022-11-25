@@ -54,8 +54,13 @@ public class PartidoServiceImpl implements PartidoService {
 
     @Override
     public PartidoRespostaDto alterar(Long id, PartidoPedidoDto pedido) {
-        // TODO Auto-generated method stub
-        return null;
+        getPartido(id);
+
+        Partido partidoParaAlterar = modelMapper.map(pedido, Partido.class);
+        partidoParaAlterar.setId(id);
+        Partido partidoAlterado = partidoRepository.save(partidoParaAlterar);
+
+        return modelMapper.map(partidoAlterado, PartidoRespostaDto.class);
     }
 
     @Override

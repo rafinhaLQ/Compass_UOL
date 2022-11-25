@@ -74,10 +74,10 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public AssociadoRespostaDto alterar(Long id, AssociadoPedidotDto request) {
+    public AssociadoRespostaDto alterar(Long id, AssociadoPedidotDto pedido) {
         getAssociado(id);
 
-        Associado associadoParaAlterar = modelMapper.map(request, Associado.class);
+        Associado associadoParaAlterar = modelMapper.map(pedido, Associado.class);
         associadoParaAlterar.setId(id);
         Associado associadoAlterado = associadoRepository.save(associadoParaAlterar);
 
