@@ -88,7 +88,8 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     private Associado getAssociado(Long id) {
-        return associadoRepository.findById(id).orElseThrow(AssociadoNaoEncontradoException::new);
+        return associadoRepository.findById(id)
+                    .orElseThrow(AssociadoNaoEncontradoException::new);
     }
 
 }

@@ -7,8 +7,10 @@ import uol.compass.sistemapolitico.constantes.CodigoDeErro;
 
 @Getter
 public class AssociadoNaoEncontradoException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
     
-    private final String detalhes;
+    private final String mensagem;
     private final CodigoDeErro codigoDeErro;
     private final HttpStatus httpStatus;
 
@@ -16,7 +18,7 @@ public class AssociadoNaoEncontradoException extends RuntimeException {
         super(CodigoDeErro.ASSOCIADO_NAO_ENCONTRADO.name());
         this.httpStatus = HttpStatus.NOT_FOUND;
         this.codigoDeErro = CodigoDeErro.ASSOCIADO_NAO_ENCONTRADO;
-        this.detalhes = CodigoDeErro.ASSOCIADO_NAO_ENCONTRADO.getMensagem();
+        this.mensagem = CodigoDeErro.ASSOCIADO_NAO_ENCONTRADO.getMensagem();
     }
 
 }
