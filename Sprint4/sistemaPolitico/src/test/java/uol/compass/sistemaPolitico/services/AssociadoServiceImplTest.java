@@ -2,9 +2,11 @@ package uol.compass.sistemapolitico.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +30,8 @@ import uol.compass.sistemapolitico.repository.PartidoRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class AssociadoServiceImplTest {
+
+    public static final Long ID = 1L;
     
     @InjectMocks
     private AssociadoServiceImpl associadoService;
@@ -45,17 +49,17 @@ public class AssociadoServiceImplTest {
     void deveriaCriarAssociadoComSucesso() {
         Associado paraCriar = new Associado();
         Associado criado = new Associado();
-        AssociadoRespostaDto respostaTest = new AssociadoRespostaDto();
+        AssociadoRespostaDto respostaEsperada = new AssociadoRespostaDto();
         AssociadoPedidotDto pedido = Mockito.mock(AssociadoPedidotDto.class);
         
         Mockito.when(modelMapper.map(pedido, Associado.class)).thenReturn(paraCriar);
         Mockito.when(associadoRepository.save(paraCriar)).thenReturn(criado);
         
-        Mockito.when(modelMapper.map(criado, AssociadoRespostaDto.class)).thenReturn(respostaTest);
+        Mockito.when(modelMapper.map(criado, AssociadoRespostaDto.class)).thenReturn(respostaEsperada);
 
         AssociadoRespostaDto resposta = associadoService.cadastra(pedido);
 
-        assertEquals(respostaTest, resposta);
+        assertEquals(respostaEsperada, resposta);
         verify(associadoRepository).save(any());
     }
 
@@ -63,7 +67,7 @@ public class AssociadoServiceImplTest {
     void deveriaVincularAssociadoAUmPartidoComSucesso() {
         Associado associadoParaCriar = Mockito.mock(Associado.class);
         Associado associadoCriado = new Associado();
-        AssociaPartidoRespostaDto respostaTest = new AssociaPartidoRespostaDto();
+        AssociaPartidoRespostaDto respostaEsperada = new AssociaPartidoRespostaDto();
         AssociaPartidoPedidoDto pedido = Mockito.mock(AssociaPartidoPedidoDto.class);
 
         Partido partidoParaCriar = Mockito.mock(Partido.class);
@@ -78,12 +82,12 @@ public class AssociadoServiceImplTest {
         Mockito.when(associadoRepository.save(associadoParaCriar)).thenReturn(associadoCriado);
         Mockito.when(partidoRepository.save(partidoParaCriar)).thenReturn(partidoCriado);
         
-        respostaTest.setAssociado(associadoCriado);
-        respostaTest.setPartido(partidoCriado);
+        respostaEsperada.setAssociado(associadoCriado);
+        respostaEsperada.setPartido(partidoCriado);
 
         AssociaPartidoRespostaDto resposta = associadoService.vincula(pedido);
 
-        assertEquals(respostaTest, resposta);
+        assertEquals(respostaEsperada, resposta);
         verify(associadoRepository).save(any());
         verify(partidoRepository).save(any());
     }
@@ -93,7 +97,7 @@ public class AssociadoServiceImplTest {
         Associado associado = new Associado();
         AssociadoRespostaDto resposta = new AssociadoRespostaDto();
         Page<Associado> paginaAssociado = new PageImpl<>(List.of(associado));
-        Page<AssociadoRespostaDto> paginaTest = new PageImpl<>(List.of(resposta));
+        Page<AssociadoRespostaDto> paginaEsperada = new PageImpl<>(List.of(resposta));
 
         Mockito.when(associadoRepository.findAll((Pageable) any())).thenReturn(paginaAssociado);
         
@@ -101,7 +105,20 @@ public class AssociadoServiceImplTest {
         
         Page<AssociadoRespostaDto> pagina = associadoService.listar(any(Pageable.class));
 
-        assertEquals(paginaTest, pagina);
+        assertEquals(paginaEsperada, pagina);
+    }
+
+    @Test
+    void deveriaBuscarPorIdComSucesso() {
+        Associado associado = new Associado();
+        AssociadoRespostaDto respostaEsperada = new AssociadoRespostaDto();
+
+        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
+        Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(respostaEsperada);
+
+        AssociadoRespostaDto resposta = associadoService.buscarPorId(ID);
+
+        assertEquals(respostaEsperada, resposta);
     }
 
 }

@@ -65,8 +65,9 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public AssociadoRespostaDto buscarPorId(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        Associado resposta = getAssociado(id);
+
+        return modelMapper.map(resposta, AssociadoRespostaDto.class);
     }
 
     @Override
