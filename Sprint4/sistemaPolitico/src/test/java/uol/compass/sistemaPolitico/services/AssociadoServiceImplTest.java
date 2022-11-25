@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,6 +13,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
@@ -83,6 +86,22 @@ public class AssociadoServiceImplTest {
         assertEquals(respostaTest, resposta);
         verify(associadoRepository).save(any());
         verify(partidoRepository).save(any());
+    }
+
+    @Test
+    void deveriaListarTodosOsAssociadosComSucesso() {
+        Associado associado = new Associado();
+        AssociadoRespostaDto resposta = new AssociadoRespostaDto();
+        Page<Associado> paginaAssociado = new PageImpl<>(List.of(associado));
+        Page<AssociadoRespostaDto> paginaTest = new PageImpl<>(List.of(resposta));
+
+        Mockito.when(associadoRepository.findAll((Pageable) any())).thenReturn(paginaAssociado);
+        
+        paginaAssociado.map(AssociadoRespostaDto::new);
+        
+        Page<AssociadoRespostaDto> pagina = associadoService.listar(any(Pageable.class));
+
+        assertEquals(paginaTest, pagina);
     }
 
 }

@@ -31,12 +31,11 @@ public class AssociadoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
     }
     
-    @PostMapping
+    @PostMapping("/partidos")
     @Transactional
     public ResponseEntity<AssociaPartidoRespostaDto> vincula(@RequestBody @Valid AssociaPartidoPedidoDto pedido) {
         AssociaPartidoRespostaDto resposta = associadoService.vincula(pedido);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(resposta);
     }
 
-    
 }

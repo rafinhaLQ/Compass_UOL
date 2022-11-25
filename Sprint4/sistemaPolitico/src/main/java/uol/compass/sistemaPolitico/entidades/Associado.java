@@ -48,7 +48,7 @@ public class Associado {
     private Sexo sexo;
 
     @ManyToOne
-    @JoinColumn(name = "PARTIDO_ID")
+    @JoinColumn(name = "ASSOCIADO_ID")
     private Partido partido;
 
 }

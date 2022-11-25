@@ -1,9 +1,12 @@
 package uol.compass.sistemapolitico.services;
 
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +42,11 @@ public class AssociadoServiceImpl implements AssociadoService {
     @Override
     public AssociaPartidoRespostaDto vincula(AssociaPartidoPedidoDto pedido) {
         AssociaPartidoRespostaDto resposta = new AssociaPartidoRespostaDto();
+
         Associado associadoParaCriar = associadoRepository.getReferenceById(pedido.getIdAssociado());
         Partido partidoParaCriar = partidoRepository.getReferenceById(pedido.getIdPartido());
+
+        // Criar erro para caso não encontre associado ou partido
 
         associadoParaCriar.setPartido(partidoParaCriar);
         partidoParaCriar.getAssociados().add(associadoParaCriar);
@@ -55,9 +61,11 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public Page<AssociadoRespostaDto> listar(Pageable pageable) {
-        // TODO Auto-generated method stub
-        return null;
+    public Page<AssociadoRespostaDto> listar(Pageable pageable) {        
+        Page<Associado> associados = associadoRepository.findAll(pageable);
+        Page<AssociadoRespostaDto> resposta = associados.map(AssociadoRespostaDto::new);
+
+        return resposta;
     }
 
     @Override

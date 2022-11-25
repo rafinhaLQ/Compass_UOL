@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +25,7 @@ import uol.compass.sistemapolitico.enums.Ideologia;
 @Entity
 @Getter
 @Setter
-@Table(name = "PARTIDO")
+@Table(name = "PARTIDOS")
 public class Partido {
 
     @Id
@@ -45,8 +46,7 @@ public class Partido {
     @Column(name = "DATA_FUNDACAO")
     private LocalDate dataFundacao;
 
-    @Column(name = "ASSOCIADOS")
-    @OneToMany(mappedBy = "PARTIDO")
+    @OneToMany(mappedBy = "partido")
     private List<Associado> associados;
 
 }
