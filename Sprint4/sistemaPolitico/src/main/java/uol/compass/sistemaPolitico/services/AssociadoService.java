@@ -14,7 +14,7 @@ public interface AssociadoService {
 
     AssociaPartidoRespostaDto vincula(AssociaPartidoPedidoDto pedido);
 
-    AssociadoParametrosResposta listar(Pageable pageable);
+    AssociadoParametrosResposta listar(Pageable pagina);
     
     AssociadoRespostaDto buscarPorId(Long id);
     
