@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum CodigoDeErro {
-
-    ASSOCIADO_NAO_ENCONTRADO("Associado nao encontrado");
+public enum CodigoDeErroPartido {
+    
+    PARTIDO_NAO_ENCONTRADO("Partido não encontrado");
 
     private final String mensagem;
 
