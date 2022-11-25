@@ -6,14 +6,14 @@ import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
-import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 
 public interface AssociadoService {
     
     AssociadoRespostaDto cadastra(AssociadoPedidotDto pedido);
 
-    PartidoVinculadoDto vincula(AssociaPartidoPedidoDto pedido);
+    AssociadoVinculadoDto vincula(AssociaPartidoPedidoDto pedido);
 
     AssociadoParametrosResposta listar(CargoPolitico cargo, Pageable pagina);
     

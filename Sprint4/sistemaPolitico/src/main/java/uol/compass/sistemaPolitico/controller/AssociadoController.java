@@ -21,7 +21,7 @@ import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
-import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
 
@@ -39,8 +39,8 @@ public class AssociadoController {
     }
     
     @PostMapping("/partidos")
-    public ResponseEntity<PartidoVinculadoDto> vincula(@RequestBody @Valid AssociaPartidoPedidoDto pedido) {
-        PartidoVinculadoDto resposta = associadoService.vincula(pedido);
+    public ResponseEntity<AssociadoVinculadoDto> vincula(@RequestBody @Valid AssociaPartidoPedidoDto pedido) {
+        AssociadoVinculadoDto resposta = associadoService.vincula(pedido);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 

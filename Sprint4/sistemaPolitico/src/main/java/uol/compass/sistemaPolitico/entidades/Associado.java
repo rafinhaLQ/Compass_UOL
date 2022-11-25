@@ -1,6 +1,7 @@
 package uol.compass.sistemapolitico.entidades;
 
 import java.time.LocalDate;
+import java.util.function.Consumer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

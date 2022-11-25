@@ -3,6 +3,7 @@ package uol.compass.sistemapolitico.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
@@ -21,9 +22,10 @@ import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
+import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
@@ -46,6 +48,9 @@ public class AssociadoServiceImplTest {
     @Mock
     private PartidoRepository partidoRepository;
 
+    @Mock
+    private PartidoService partidoService;
+
     @Test
     void deveriaCriarAssociadoComSucesso() {
         Associado associado = new Associado();
@@ -62,33 +67,30 @@ public class AssociadoServiceImplTest {
         verify(associadoRepository).save(any());
     }
 
-    // Olhar depois
     @Test
     void deveriaVincularAssociadoAUmPartidoComSucesso() {
-        Associado associadoParaCriar = Mockito.mock(Associado.class);
-        Associado associadoCriado = new Associado();
-        AssociaPartidoRespostaDto respostaEsperada = new AssociaPartidoRespostaDto();
-        AssociaPartidoPedidoDto pedido = Mockito.mock(AssociaPartidoPedidoDto.class);
+        Partido partidoParaSalvar = new Partido();
+        Partido partidoSalvo = new Partido();
+        PartidoRespostaDto partidoDto = new PartidoRespostaDto();
 
-        Partido partidoParaCriar = Mockito.mock(Partido.class);
-        Partido partidoCriado = new Partido();
+        Associado associado = new Associado();
+        AssociaPartidoPedidoDto pedido = new AssociaPartidoPedidoDto();
 
-        Mockito.when(associadoRepository.getReferenceById(pedido.getIdAssociado())).thenReturn(associadoParaCriar);
-        Mockito.when(partidoRepository.getReferenceById(pedido.getIdPartido())).thenReturn(partidoParaCriar);
+        Mockito.when(partidoService.buscarPorId(any())).thenReturn(partidoDto);
+        Mockito.when(modelMapper.map(any(), eq(Partido.class))).thenReturn(partidoParaSalvar);
+        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
+        Mockito.when(modelMapper.map(any(), eq(Associado.class))).thenReturn(associado);
 
-        associadoParaCriar.setPartido(partidoParaCriar);
-        partidoParaCriar.getAssociados().add(associadoCriado);
+        partidoParaSalvar.getAssociados().add(associado);
+        associado.setPartidoId(partidoParaSalvar);
 
-        Mockito.when(associadoRepository.save(associadoParaCriar)).thenReturn(associadoCriado);
-        Mockito.when(partidoRepository.save(partidoParaCriar)).thenReturn(partidoCriado);
+        Mockito.when(partidoRepository.save(any())).thenReturn(partidoSalvo);
         
-        respostaEsperada.setAssociado(associadoCriado);
-        respostaEsperada.setPartido(partidoCriado);
+        AssociadoVinculadoDto respostaEsperada = new AssociadoVinculadoDto(partidoSalvo, associado);
 
-        AssociaPartidoRespostaDto resposta = associadoService.vincula(pedido);
+        AssociadoVinculadoDto resposta = associadoService.vincula(pedido);
 
         assertEquals(respostaEsperada, resposta);
-        verify(associadoRepository).save(any());
         verify(partidoRepository).save(any());
     }
 

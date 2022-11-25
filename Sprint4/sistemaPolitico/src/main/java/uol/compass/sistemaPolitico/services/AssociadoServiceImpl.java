@@ -13,7 +13,7 @@ import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
-import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
@@ -42,12 +42,17 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public PartidoVinculadoDto vincula(AssociaPartidoPedidoDto pedido) {
+    public AssociadoVinculadoDto vincula(AssociaPartidoPedidoDto pedido) {
         Partido partidoParaVincular = modelMapper.map(partidoService.buscarPorId(pedido.getIdPartido()), Partido.class);
-        partidoParaVincular.getAssociados().forEach(associado -> associado.setPartidoId(partidoParaVincular));
+        
+        Associado associado = getAssociado(pedido.getIdAssociado());
+
+        partidoParaVincular.getAssociados().add(associado);
+        partidoParaVincular.getAssociados().forEach(associadoNaLista -> associadoNaLista.setPartidoId(partidoParaVincular));
+        
         Partido partidoVinculado = partidoRepository.save(partidoParaVincular);
 
-        return modelMapper.map(partidoVinculado, PartidoVinculadoDto.class);
+        return new AssociadoVinculadoDto(partidoVinculado, associado);
     }
 
     @Override
