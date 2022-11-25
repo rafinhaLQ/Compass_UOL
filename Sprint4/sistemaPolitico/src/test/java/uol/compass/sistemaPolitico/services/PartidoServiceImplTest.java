@@ -19,6 +19,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import com.jayway.jsonpath.Option;
+
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
@@ -98,6 +100,17 @@ public class PartidoServiceImplTest {
 
         assertEquals(respostaEsperada, resposta);
         verify(partidoRepository).save(any());
+    }
+
+    @Test
+    void deveriaDeletarPartidoComSucesso() {
+        Partido partido = new Partido();
+
+        Mockito.when(partidoRepository.findById(any())).thenReturn(Optional.of(partido));
+
+        partidoService.deletar(ID);
+
+        verify(partidoRepository).deleteById(any());
     }
 
     private PartidoParametrosResposta criaRespostaDeParametrosDePartidos() {

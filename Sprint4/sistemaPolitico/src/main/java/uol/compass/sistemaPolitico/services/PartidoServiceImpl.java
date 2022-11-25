@@ -65,8 +65,8 @@ public class PartidoServiceImpl implements PartidoService {
 
     @Override
     public void deletar(Long id) {
-        // TODO Auto-generated method stub
-        
+        getPartido(id);
+        partidoRepository.deleteById(id);
     }
 
     private PartidoParametrosResposta criaParametrosDeRespostaDePartidos(Page<Partido> pagina) {

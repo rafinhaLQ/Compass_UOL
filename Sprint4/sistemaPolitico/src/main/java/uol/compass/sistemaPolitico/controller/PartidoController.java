@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,12 @@ public class PartidoController {
     public ResponseEntity<PartidoRespostaDto> altera(@PathVariable("id") Long id, @RequestBody @Valid PartidoPedidoDto pedido) {
         PartidoRespostaDto resposta = partidoService.alterar(id, pedido);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleta(@PathVariable("id") Long id) {
+        partidoService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
