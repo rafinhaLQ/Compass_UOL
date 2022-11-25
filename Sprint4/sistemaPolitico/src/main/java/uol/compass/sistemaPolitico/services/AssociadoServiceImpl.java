@@ -12,6 +12,7 @@ import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
+import uol.compass.sistemapolitico.excecoes.AssociadoNaoEncontradoException;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
 
@@ -87,7 +88,7 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     private Associado getAssociado(Long id) {
-        return associadoRepository.findById(id).orElseThrow();
+        return associadoRepository.findById(id).orElseThrow(AssociadoNaoEncontradoException::new);
     }
 
 }
