@@ -1,12 +1,7 @@
 package uol.compass.sistemapolitico.services;
 
-import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -61,8 +56,8 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public Page<AssociadoRespostaDto> listar(Pageable pageable) {        
-        Page<Associado> associados = associadoRepository.findAll(pageable);
+    public Page<AssociadoRespostaDto> listar(Pageable paginacao) {        
+        Page<Associado> associados = associadoRepository.findAll(paginacao);
         Page<AssociadoRespostaDto> resposta = associados.map(AssociadoRespostaDto::new);
 
         return resposta;
