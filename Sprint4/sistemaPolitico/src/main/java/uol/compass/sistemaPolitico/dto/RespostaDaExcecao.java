@@ -17,19 +17,19 @@ public class RespostaDaExcecao {
 
     private final List<String> detalhes;
 
-    public RespostaDaExcecao(CodigosDeErro codigoDeErro, Throwable ex) {
-        this(codigoDeErro, ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage());
+    public RespostaDaExcecao(CodigosDeErro codigosDeErro, Throwable ex) {
+        this(codigosDeErro, ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage());
     }
 
-    public RespostaDaExcecao(CodigosDeErro codigoDeErro, String detalhes){
-        this.codigo = codigoDeErro.name();
-        this.mensagem = codigoDeErro.getMensagem();
+    public RespostaDaExcecao(CodigosDeErro codigosDeErro, String detalhes){
+        this.codigo = codigosDeErro.name();
+        this.mensagem = codigosDeErro.getMensagem();
         this.detalhes = Collections.singletonList(detalhes);
     }
 
-    public RespostaDaExcecao(CodigosDeErro codigoDeErro, List<String> detalhes){
-        this.codigo = codigoDeErro.name();
-        this.mensagem = codigoDeErro.getMensagem();
+    public RespostaDaExcecao(CodigosDeErro codigosDeErro, List<String> detalhes){
+        this.codigo = codigosDeErro.name();
+        this.mensagem = codigosDeErro.getMensagem();
         this.detalhes = detalhes;
     }
 

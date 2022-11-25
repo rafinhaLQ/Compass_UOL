@@ -66,7 +66,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 erros.add(String.format("%s : %s", erro.getField(), erro.getDefaultMessage()))
         );
         
-        RespostaDaExcecao respostaDaExcecao = new RespostaDaExcecao(CodigosDeErro.PEDIDO_INVALIDO, ex);
+        RespostaDaExcecao respostaDaExcecao = new RespostaDaExcecao(CodigosDeErro.PEDIDO_INVALIDO, erros);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(respostaDaExcecao);
     }
 
