@@ -43,6 +43,7 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public AssociadoVinculadoDto vincula(AssociaPartidoPedidoDto pedido) {
+        getAssociado(pedido.getIdAssociado());
         Partido partidoParaVincular = modelMapper.map(partidoService.buscarPorId(pedido.getIdPartido()), Partido.class);
         
         Associado associado = getAssociado(pedido.getIdAssociado());

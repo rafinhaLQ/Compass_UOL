@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
@@ -18,14 +18,21 @@ import uol.compass.sistemapolitico.excecoes.PartidoNaoEncontradoException;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
 
 @Service
-@RequiredArgsConstructor
 public class PartidoServiceImpl implements PartidoService {
 
-    private final ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
-    private final PartidoRepository partidoRepository;
+    private PartidoRepository partidoRepository;
 
-    private final AssociadoServiceImpl associadoService;
+    private AssociadoServiceImpl associadoService;
+
+    @Autowired
+    public PartidoServiceImpl(ModelMapper modelMapper, PartidoRepository partidoRepository,
+           @org.springframework.context.annotation.Lazy AssociadoServiceImpl associadoService) {
+        this.modelMapper = modelMapper;
+        this.partidoRepository = partidoRepository;
+        this.associadoService = associadoService;
+    }
 
     @Override
     public PartidoRespostaDto cadastra(PartidoPedidoDto pedido) {

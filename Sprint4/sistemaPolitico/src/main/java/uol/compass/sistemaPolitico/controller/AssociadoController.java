@@ -2,7 +2,6 @@ package uol.compass.sistemapolitico.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
@@ -27,10 +27,10 @@ import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
 
 @RestController
 @RequestMapping("/associados")
+@RequiredArgsConstructor
 public class AssociadoController {
 
-    @Autowired
-    private AssociadoServiceImpl associadoService;
+    private final AssociadoServiceImpl associadoService;
 
     @PostMapping
     public ResponseEntity<AssociadoRespostaDto> cadastra(@RequestBody @Valid AssociadoPedidotDto pedido) {
