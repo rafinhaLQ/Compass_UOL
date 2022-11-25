@@ -7,6 +7,7 @@ import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
+import uol.compass.sistemapolitico.enums.CargoPolitico;
 
 public interface AssociadoService {
     
@@ -14,7 +15,7 @@ public interface AssociadoService {
 
     PartidoVinculadoDto vincula(AssociaPartidoPedidoDto pedido);
 
-    AssociadoParametrosResposta listar(Pageable pagina);
+    AssociadoParametrosResposta listar(CargoPolitico cargo, Pageable pagina);
     
     AssociadoRespostaDto buscarPorId(Long id);
     

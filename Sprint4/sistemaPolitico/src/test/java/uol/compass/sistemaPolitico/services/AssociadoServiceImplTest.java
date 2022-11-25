@@ -102,7 +102,7 @@ public class AssociadoServiceImplTest {
         Mockito.when(associadoRepository.findAll((Pageable) any())).thenReturn(pagina);
         Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(resposta);
         
-        AssociadoParametrosResposta respostaDeParametros = associadoService.listar(any(Pageable.class));
+        AssociadoParametrosResposta respostaDeParametros = associadoService.listar(null, any(Pageable.class));
 
         assertEquals(respostaDeParametrosEsperada, respostaDeParametros);
     }

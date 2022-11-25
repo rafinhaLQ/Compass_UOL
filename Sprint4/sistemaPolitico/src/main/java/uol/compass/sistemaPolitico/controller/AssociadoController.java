@@ -22,6 +22,7 @@ import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
+import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.services.AssociadoServiceImpl;
 
 @RestController
@@ -44,8 +45,9 @@ public class AssociadoController {
     }
 
     @GetMapping
-    public ResponseEntity<AssociadoParametrosResposta> lista(@RequestParam(required = false, name = "nome_partido") String nome, Pageable paginacao) {
-        AssociadoParametrosResposta resposta = associadoService.listar(paginacao);
+    public ResponseEntity<AssociadoParametrosResposta> lista(@RequestParam(required = false) CargoPolitico cargo,
+                        @PageableDefault(sort = {"id"}) Pageable paginacao) {
+        AssociadoParametrosResposta resposta = associadoService.listar(cargo, paginacao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 

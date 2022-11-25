@@ -16,6 +16,7 @@ import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
+import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.excecoes.AssociadoNaoEncontradoException;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
@@ -50,8 +51,10 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public AssociadoParametrosResposta listar(Pageable paginacao) {        
-        Page<Associado> pagina = associadoRepository.findAll(paginacao);
+    public AssociadoParametrosResposta listar(CargoPolitico cargo, Pageable paginacao) {        
+        Page<Associado> pagina = cargo == null ?
+                    associadoRepository.findAll(paginacao) :
+                    associadoRepository.findAllByCargoPolitico(cargo, paginacao);
 
         return criarParametrosDeRespostaDeAssociados(pagina);
     }

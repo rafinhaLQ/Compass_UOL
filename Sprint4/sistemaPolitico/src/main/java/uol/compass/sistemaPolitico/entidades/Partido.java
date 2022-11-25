@@ -42,7 +42,7 @@ public class Partido {
     @Column(name = "data_fundacao")
     private LocalDate dataFundacao;
 
-    @OneToMany(mappedBy = "partido")
+    @OneToMany(mappedBy = "partidoId")
     private List<Associado> associados = new ArrayList<>();
 
 }
