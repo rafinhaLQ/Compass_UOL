@@ -25,30 +25,27 @@ import uol.compass.sistemapolitico.enums.Sexo;
 @Entity
 @Getter
 @Setter
-@Table(name = "ASSOCIADOS")
+@Table(name = "associados")
 public class Associado {
 
     @Id
-    @Column(name = "ID", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NOME")
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "CARGO_POLITICO")
+    @Column(name = "cargo_politico")
     private CargoPolitico cargoPolitico;
 
-    @Column(name = "DATA_NASCIMENTO")
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "SEXO")
     private Sexo sexo;
 
     @ManyToOne
-    @JoinColumn(name = "ASSOCIADO_ID")
-    private Partido partido;
+    @JoinColumn(name = "partido_id")
+    private Partido partidoId;
 
 }

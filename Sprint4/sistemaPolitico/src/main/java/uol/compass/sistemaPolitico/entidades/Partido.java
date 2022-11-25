@@ -1,6 +1,7 @@
 package uol.compass.sistemapolitico.entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -24,28 +25,24 @@ import uol.compass.sistemapolitico.enums.Ideologia;
 @Entity
 @Getter
 @Setter
-@Table(name = "PARTIDOS")
+@Table(name = "partidos")
 public class Partido {
 
     @Id
-    @Column(name = "ID", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NOME")
     private String nome;
 
-    @Column(name = "SIGLA")
     private String sigla;
 
-    @Column(name = "IDEOLOGIA")
     @Enumerated(EnumType.STRING)
     private Ideologia ideologia;
 
-    @Column(name = "DATA_FUNDACAO")
+    @Column(name = "data_fundacao")
     private LocalDate dataFundacao;
 
     @OneToMany(mappedBy = "partido")
-    private List<Associado> associados;
+    private List<Associado> associados = new ArrayList<>();
 
 }

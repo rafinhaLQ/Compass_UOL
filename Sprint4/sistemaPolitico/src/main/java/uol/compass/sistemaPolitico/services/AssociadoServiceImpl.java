@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociaPartidoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.PartidoVinculadoDto;
 import uol.compass.sistemapolitico.entidades.Associado;
 import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.excecoes.AssociadoNaoEncontradoException;
@@ -30,6 +30,8 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     private final PartidoRepository partidoRepository;
 
+    private final PartidoServiceImpl partidoService;
+
     @Override
     public AssociadoRespostaDto cadastra(AssociadoPedidotDto pedido) {
         Associado paraCriar = modelMapper.map(pedido, Associado.class);
@@ -39,24 +41,12 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public AssociaPartidoRespostaDto vincula(AssociaPartidoPedidoDto pedido) {
-        AssociaPartidoRespostaDto resposta = new AssociaPartidoRespostaDto();
+    public PartidoVinculadoDto vincula(AssociaPartidoPedidoDto pedido) {
+        Partido partidoParaVincular = modelMapper.map(partidoService.buscarPorId(pedido.getIdPartido()), Partido.class);
+        partidoParaVincular.getAssociados().forEach(associado -> associado.setPartidoId(partidoParaVincular));
+        Partido partidoVinculado = partidoRepository.save(partidoParaVincular);
 
-        Associado associadoParaCriar = associadoRepository.getReferenceById(pedido.getIdAssociado());
-        Partido partidoParaCriar = partidoRepository.getReferenceById(pedido.getIdPartido());
-
-        // Criar erro para caso não encontre associado ou partido
-
-        associadoParaCriar.setPartido(partidoParaCriar);
-        partidoParaCriar.getAssociados().add(associadoParaCriar);
-
-        Associado associadoCriado = associadoRepository.save(associadoParaCriar);
-        Partido partidoCriado = partidoRepository.save(partidoParaCriar);
-
-        resposta.setAssociado(associadoCriado);
-        resposta.setPartido(partidoCriado);
-
-        return resposta;
+        return modelMapper.map(partidoVinculado, PartidoVinculadoDto.class);
     }
 
     @Override
