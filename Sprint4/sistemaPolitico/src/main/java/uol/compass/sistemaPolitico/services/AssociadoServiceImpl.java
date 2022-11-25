@@ -29,9 +29,8 @@ public class AssociadoServiceImpl implements AssociadoService {
     public AssociadoRespostaDto cadastra(AssociadoPedidotDto pedido) {
         Associado paraCriar = modelMapper.map(pedido, Associado.class);
         Associado criado = associadoRepository.save(paraCriar);
-        AssociadoRespostaDto resposta = modelMapper.map(criado, AssociadoRespostaDto.class);
 
-        return resposta;
+        return modelMapper.map(criado, AssociadoRespostaDto.class);
     }
 
     @Override
@@ -83,8 +82,8 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public void deletar(Long id) {
-        // TODO Auto-generated method stub
-        
+        getAssociado(id);
+        associadoRepository.deleteById(id);
     }
 
     private Associado getAssociado(Long id) {

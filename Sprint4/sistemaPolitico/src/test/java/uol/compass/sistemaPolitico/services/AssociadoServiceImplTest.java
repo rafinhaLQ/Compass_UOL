@@ -47,22 +47,21 @@ public class AssociadoServiceImplTest {
 
     @Test
     void deveriaCriarAssociadoComSucesso() {
-        Associado paraCriar = new Associado();
-        Associado criado = new Associado();
+        Associado associado = new Associado();
+        AssociadoPedidotDto pedido = new AssociadoPedidotDto();
         AssociadoRespostaDto respostaEsperada = new AssociadoRespostaDto();
-        AssociadoPedidotDto pedido = Mockito.mock(AssociadoPedidotDto.class);
         
-        Mockito.when(modelMapper.map(pedido, Associado.class)).thenReturn(paraCriar);
-        Mockito.when(associadoRepository.save(paraCriar)).thenReturn(criado);
+        Mockito.when(modelMapper.map(any(), eq(Associado.class))).thenReturn(associado);
+        Mockito.when(associadoRepository.save(associado)).thenReturn(associado);
+        Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(respostaEsperada);
         
-        Mockito.when(modelMapper.map(criado, AssociadoRespostaDto.class)).thenReturn(respostaEsperada);
-
         AssociadoRespostaDto resposta = associadoService.cadastra(pedido);
 
         assertEquals(respostaEsperada, resposta);
         verify(associadoRepository).save(any());
     }
 
+    // Olhar depois
     @Test
     void deveriaVincularAssociadoAUmPartidoComSucesso() {
         Associado associadoParaCriar = Mockito.mock(Associado.class);
@@ -136,6 +135,17 @@ public class AssociadoServiceImplTest {
 
         assertEquals(respostaEsperada, resposta);
         verify(associadoRepository).save(any());
+    }
+
+    @Test
+    void deveriaDeletarAssociadoComSucesso() {
+        Associado associado = new Associado();
+
+        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
+
+        associadoService.deletar(ID);
+
+        verify(associadoRepository).deleteById(any());
     }
 
 }
