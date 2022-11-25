@@ -72,8 +72,13 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public AssociadoRespostaDto alterar(Long id, AssociadoPedidotDto request) {
-        // TODO Auto-generated method stub
-        return null;
+        getAssociado(id);
+
+        Associado associadoParaAlterar = modelMapper.map(request, Associado.class);
+        associadoParaAlterar.setId(id);
+        Associado associadoAlterado = associadoRepository.save(associadoParaAlterar);
+
+        return modelMapper.map(associadoAlterado, AssociadoRespostaDto.class);
     }
 
     @Override

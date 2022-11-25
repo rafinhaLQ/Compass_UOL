@@ -121,4 +121,21 @@ public class AssociadoServiceImplTest {
         assertEquals(respostaEsperada, resposta);
     }
 
+    @Test
+    void deveriaAlterarAssociadoComSucesso() {
+        Associado associado = new Associado();
+        AssociadoRespostaDto respostaEsperada = new AssociadoRespostaDto();
+        AssociadoPedidotDto pedido = new AssociadoPedidotDto();
+
+        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
+        Mockito.when(modelMapper.map(any(), eq(Associado.class))).thenReturn(associado);
+        Mockito.when(associadoRepository.save(any())).thenReturn(associado);
+        Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(respostaEsperada);
+
+        AssociadoRespostaDto resposta = associadoService.alterar(ID, pedido);
+
+        assertEquals(respostaEsperada, resposta);
+        verify(associadoRepository).save(any());
+    }
+
 }
