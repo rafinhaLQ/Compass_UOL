@@ -40,8 +40,9 @@ public class PartidoServiceImpl implements PartidoService {
 
     @Override
     public PartidoRespostaDto buscarPorId(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        Partido resposta = getPartido(id);
+
+        return modelMapper.map(resposta, PartidoRespostaDto.class);
     }
 
     @Override
@@ -77,6 +78,10 @@ public class PartidoServiceImpl implements PartidoService {
 
     private PartidoRespostaDto criaRespostaDePartidos(Partido partido) {
         return modelMapper.map(partido, PartidoRespostaDto.class);
+    }
+
+    private Partido getPartido(Long id) {
+        return partidoRepository.findById(id).orElseThrow();
     }
 
 }

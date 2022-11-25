@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,6 +68,19 @@ public class PartidoServiceImplTest {
         PartidoParametrosResposta respostaDeParametros = partidoService.listar(any(Pageable.class));
 
         assertEquals(respostaDeParametrosEsperada, respostaDeParametros);
+    }
+
+    @Test
+    void deveriaBuscarPorIdComSucesso() {
+        Partido partido = new Partido();
+        PartidoRespostaDto respostaEsperada = new PartidoRespostaDto();
+
+        Mockito.when(partidoRepository.findById(any())).thenReturn(Optional.of(partido));
+        Mockito.when(modelMapper.map(any(), eq(PartidoRespostaDto.class))).thenReturn(respostaEsperada);
+
+        PartidoRespostaDto resposta = partidoService.buscarPorId(ID);
+
+        assertEquals(respostaEsperada, resposta);
     }
 
     private PartidoParametrosResposta criaRespostaDeParametrosDePartidos() {

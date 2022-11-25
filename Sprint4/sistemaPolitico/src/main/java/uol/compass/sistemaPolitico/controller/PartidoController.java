@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,12 @@ public class PartidoController {
     @GetMapping
     public ResponseEntity<PartidoParametrosResposta> lista(Pageable pagincao) {
         PartidoParametrosResposta resposta = partidoService.listar(pagincao);
+        return ResponseEntity.status(HttpStatus.OK).body(resposta);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PartidoRespostaDto> buscaPorId(@PathVariable("id") Long id) {
+        PartidoRespostaDto resposta = partidoService.buscarPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 
