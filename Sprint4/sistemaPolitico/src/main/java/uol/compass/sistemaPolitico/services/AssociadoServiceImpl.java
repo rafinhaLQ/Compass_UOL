@@ -90,15 +90,15 @@ public class AssociadoServiceImpl implements AssociadoService {
         associadoRepository.deleteById(id);
     }
 
-    private Associado getAssociado(Long id) {
-        return associadoRepository.findById(id)
-                    .orElseThrow(AssociadoNaoEncontradoException::new);
-    }
-
     @Override
     public void desvincula(Long id_associado, Long id_partido) {
         // TODO Auto-generated method stub
         
+    }
+
+    private Associado getAssociado(Long id) {
+        return associadoRepository.findById(id)
+                    .orElseThrow(AssociadoNaoEncontradoException::new);
     }
 
     private AssociadoParametrosResposta criarParametrosDeRespostaDeAssociados(Page<Associado> pagina) {

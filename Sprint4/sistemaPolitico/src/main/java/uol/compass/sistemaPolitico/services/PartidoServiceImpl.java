@@ -13,6 +13,7 @@ import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Partido;
+import uol.compass.sistemapolitico.excecoes.PartidoNaoEncontradoException;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
 
 @Service
@@ -81,7 +82,8 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     private Partido getPartido(Long id) {
-        return partidoRepository.findById(id).orElseThrow();
+        return partidoRepository.findById(id)
+                    .orElseThrow(PartidoNaoEncontradoException::new);
     }
 
 }
