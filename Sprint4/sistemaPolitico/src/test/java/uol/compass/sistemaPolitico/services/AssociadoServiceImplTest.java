@@ -1,6 +1,7 @@
 package uol.compass.sistemapolitico.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -145,6 +146,23 @@ public class AssociadoServiceImplTest {
         associadoService.deletar(ID);
 
         verify(associadoRepository).deleteById(any());
+    }
+
+    @Test
+    void deveriaDesvincularAssociadoComSucesso() {
+        Partido partido = new Partido();
+
+        partido.getAssociados().forEach(associado ->
+            associado.setPartidoId(null)
+        );
+        
+        partido.getAssociados().forEach(associado ->
+            assertNull(associado)
+        );
+
+        partidoRepository.save(any());
+
+        verify(partidoRepository).save(any());
     }
 
     private AssociadoParametrosResposta criaRespostaDeParametrosDeAssociados() {

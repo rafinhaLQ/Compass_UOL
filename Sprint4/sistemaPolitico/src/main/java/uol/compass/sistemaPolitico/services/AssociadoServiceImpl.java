@@ -99,7 +99,6 @@ public class AssociadoServiceImpl implements AssociadoService {
         partido.getAssociados().remove(associado);
 
         partidoRepository.save(partido);
-
     }
 
     public AssociadoParametrosResposta listarPorPartido(Partido partido, Pageable paginacao) {
