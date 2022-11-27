@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
-import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.services.PartidoServiceImpl;
 
@@ -35,8 +35,8 @@ public class PartidoController {
     }
 
     @GetMapping
-    public ResponseEntity<PartidoParametrosResposta> lista(Pageable pagincao) {
-        PartidoParametrosResposta resposta = partidoService.listar(pagincao);
+    public ResponseEntity<PartidoParametrosRespostaDto> lista(Pageable pagincao) {
+        PartidoParametrosRespostaDto resposta = partidoService.listar(pagincao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 
@@ -47,8 +47,8 @@ public class PartidoController {
     }
 
     @GetMapping("/{id}/associados")
-    public ResponseEntity<AssociadoParametrosResposta> listaAssociadosPorPartido(@PathVariable("id") Long id, Pageable paginacao) {
-        AssociadoParametrosResposta resposta = partidoService.buscarAssociadosPorPartido(id, paginacao);
+    public ResponseEntity<AssociadoParametrosRespostaDto> listaAssociadosPorPartido(@PathVariable("id") Long id, Pageable paginacao) {
+        AssociadoParametrosRespostaDto resposta = partidoService.buscarAssociadosPorPartido(id, paginacao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 

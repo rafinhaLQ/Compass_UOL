@@ -4,7 +4,7 @@ import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
@@ -15,7 +15,7 @@ public interface AssociadoService {
 
     AssociadoVinculadoDto vincula(AssociaPartidoPedidoDto pedido);
 
-    AssociadoParametrosResposta listar(CargoPolitico cargo, Pageable pagina);
+    AssociadoParametrosRespostaDto listar(CargoPolitico cargo, Pageable pagina);
     
     AssociadoRespostaDto buscarPorId(Long id);
     

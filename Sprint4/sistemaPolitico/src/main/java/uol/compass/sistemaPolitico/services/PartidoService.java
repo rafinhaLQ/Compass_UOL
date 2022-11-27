@@ -3,19 +3,19 @@ package uol.compass.sistemapolitico.services;
 import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
-import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 
 public interface PartidoService {
 
     PartidoRespostaDto cadastra(PartidoPedidoDto pedido);
     
-    PartidoParametrosResposta listar(Pageable pagina);
+    PartidoParametrosRespostaDto listar(Pageable pagina);
     
     PartidoRespostaDto buscarPorId(Long id);
     
-    AssociadoParametrosResposta buscarAssociadosPorPartido(Long id, Pageable pagina);
+    AssociadoParametrosRespostaDto buscarAssociadosPorPartido(Long id, Pageable pagina);
 
     PartidoRespostaDto alterar(Long id, PartidoPedidoDto pedido);
 

@@ -20,7 +20,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
-import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
@@ -60,12 +60,12 @@ public class PartidoServiceImplTest {
         Partido partido = new Partido();
         PartidoRespostaDto resposta = new PartidoRespostaDto();
         Page<Partido> pagina = new PageImpl<>(List.of(partido));
-        PartidoParametrosResposta respostaDeParametrosEsperada = criaRespostaDeParametrosDePartidos();
+        PartidoParametrosRespostaDto respostaDeParametrosEsperada = criaRespostaDeParametrosDePartidos();
 
         Mockito.when(partidoRepository.findAll((Pageable) any())).thenReturn(pagina);
         Mockito.when(modelMapper.map(any(), eq(PartidoRespostaDto.class))).thenReturn(resposta);
 
-        PartidoParametrosResposta respostaDeParametros = partidoService.listar(any(Pageable.class));
+        PartidoParametrosRespostaDto respostaDeParametros = partidoService.listar(any(Pageable.class));
 
         assertEquals(respostaDeParametrosEsperada, respostaDeParametros);
     }
@@ -111,8 +111,8 @@ public class PartidoServiceImplTest {
         verify(partidoRepository).deleteById(any());
     }
 
-    private PartidoParametrosResposta criaRespostaDeParametrosDePartidos() {
-        return PartidoParametrosResposta.builder()
+    private PartidoParametrosRespostaDto criaRespostaDeParametrosDePartidos() {
+        return PartidoParametrosRespostaDto.builder()
                     .numeroDeElementos(1)
                     .totalDeElementos(1L)
                     .totalDePaginas(1)

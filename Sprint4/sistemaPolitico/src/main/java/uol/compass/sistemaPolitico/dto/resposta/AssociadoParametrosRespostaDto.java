@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssociadoParametrosResposta {
+public class AssociadoParametrosRespostaDto {
 
     private Integer numeroDeElementos;
 

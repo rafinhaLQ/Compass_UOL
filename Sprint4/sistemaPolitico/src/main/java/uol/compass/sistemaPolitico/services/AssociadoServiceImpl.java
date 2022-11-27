@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.entidades.Associado;
@@ -57,7 +57,7 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public AssociadoParametrosResposta listar(CargoPolitico cargo, Pageable paginacao) {        
+    public AssociadoParametrosRespostaDto listar(CargoPolitico cargo, Pageable paginacao) {        
         Page<Associado> pagina = cargo == null ?
                     associadoRepository.findAll(paginacao) :
                     associadoRepository.findAllByCargoPolitico(cargo, paginacao);
@@ -101,7 +101,7 @@ public class AssociadoServiceImpl implements AssociadoService {
         partidoRepository.save(partido);
     }
 
-    public AssociadoParametrosResposta listarPorPartido(Partido partido, Pageable paginacao) {
+    public AssociadoParametrosRespostaDto listarPorPartido(Partido partido, Pageable paginacao) {
         Page<Associado> pagina = associadoRepository.findAllByPartidoId(partido, paginacao);
 
         return criarParametrosDeRespostaDeAssociados(pagina);
@@ -112,12 +112,12 @@ public class AssociadoServiceImpl implements AssociadoService {
                     .orElseThrow(AssociadoNaoEncontradoException::new);
     }
 
-    private AssociadoParametrosResposta criarParametrosDeRespostaDeAssociados(Page<Associado> pagina) {
+    private AssociadoParametrosRespostaDto criarParametrosDeRespostaDeAssociados(Page<Associado> pagina) {
         List<AssociadoRespostaDto> associados = pagina.stream()
                                 .map(this::criaRespostaDeAssociados)
                                 .collect(Collectors.toList());
 
-        return AssociadoParametrosResposta.builder()
+        return AssociadoParametrosRespostaDto.builder()
                                 .numeroDeElementos(pagina.getNumberOfElements())
                                 .totalDeElementos(pagina.getTotalElements())
                                 .totalDePaginas(pagina.getTotalPages())

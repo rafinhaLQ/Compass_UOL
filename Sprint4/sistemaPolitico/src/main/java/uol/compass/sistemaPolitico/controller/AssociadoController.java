@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
@@ -45,9 +45,9 @@ public class AssociadoController {
     }
 
     @GetMapping
-    public ResponseEntity<AssociadoParametrosResposta> lista(@RequestParam(required = false) CargoPolitico cargo,
+    public ResponseEntity<AssociadoParametrosRespostaDto> lista(@RequestParam(required = false) CargoPolitico cargo,
                         @PageableDefault(sort = {"id"}) Pageable paginacao) {
-        AssociadoParametrosResposta resposta = associadoService.listar(cargo, paginacao);
+        AssociadoParametrosRespostaDto resposta = associadoService.listar(cargo, paginacao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 

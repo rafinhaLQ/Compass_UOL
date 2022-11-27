@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PartidoParametrosResposta {
+public class PartidoParametrosRespostaDto {
 
     private Integer numeroDeElementos;
 

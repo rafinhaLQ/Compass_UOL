@@ -10,8 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
-import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
+import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.excecoes.PartidoNaoEncontradoException;
@@ -43,7 +43,7 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public PartidoParametrosResposta listar(Pageable paginacao) {
+    public PartidoParametrosRespostaDto listar(Pageable paginacao) {
         Page<Partido> pagina = partidoRepository.findAll(paginacao);
 
         return criaParametrosDeRespostaDePartidos(pagina);
@@ -57,7 +57,7 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public AssociadoParametrosResposta buscarAssociadosPorPartido(Long id, Pageable pagina) {
+    public AssociadoParametrosRespostaDto buscarAssociadosPorPartido(Long id, Pageable pagina) {
         Partido partido = getPartido(id);
 
         return associadoService.listarPorPartido(partido, pagina);
@@ -80,12 +80,12 @@ public class PartidoServiceImpl implements PartidoService {
         partidoRepository.deleteById(id);
     }
 
-    private PartidoParametrosResposta criaParametrosDeRespostaDePartidos(Page<Partido> pagina) {
+    private PartidoParametrosRespostaDto criaParametrosDeRespostaDePartidos(Page<Partido> pagina) {
         List<PartidoRespostaDto> partidos = pagina.stream()
                                 .map(this::criaRespostaDePartidos)
                                 .collect(Collectors.toList());
         
-        return PartidoParametrosResposta.builder()
+        return PartidoParametrosRespostaDto.builder()
                                     .numeroDeElementos(pagina.getNumberOfElements())
                                     .totalDeElementos(pagina.getTotalElements())
                                     .totalDePaginas(pagina.getTotalPages())

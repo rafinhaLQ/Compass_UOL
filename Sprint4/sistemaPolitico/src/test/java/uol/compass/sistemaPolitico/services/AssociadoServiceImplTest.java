@@ -22,7 +22,7 @@ import org.springframework.data.domain.Pageable;
 
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
-import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosResposta;
+import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoVinculadoDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
@@ -97,12 +97,12 @@ public class AssociadoServiceImplTest {
         Associado associado = new Associado();
         AssociadoRespostaDto resposta = new AssociadoRespostaDto();
         Page<Associado> pagina = new PageImpl<>(List.of(associado));
-        AssociadoParametrosResposta respostaDeParametrosEsperada = criaRespostaDeParametrosDeAssociados();
+        AssociadoParametrosRespostaDto respostaDeParametrosEsperada = criaRespostaDeParametrosDeAssociados();
 
         Mockito.when(associadoRepository.findAll((Pageable) any())).thenReturn(pagina);
         Mockito.when(modelMapper.map(any(), eq(AssociadoRespostaDto.class))).thenReturn(resposta);
         
-        AssociadoParametrosResposta respostaDeParametros = associadoService.listar(null, any(Pageable.class));
+        AssociadoParametrosRespostaDto respostaDeParametros = associadoService.listar(null, any(Pageable.class));
 
         assertEquals(respostaDeParametrosEsperada, respostaDeParametros);
     }
@@ -165,8 +165,8 @@ public class AssociadoServiceImplTest {
         verify(partidoRepository).save(any());
     }
 
-    private AssociadoParametrosResposta criaRespostaDeParametrosDeAssociados() {
-        return AssociadoParametrosResposta.builder()
+    private AssociadoParametrosRespostaDto criaRespostaDeParametrosDeAssociados() {
+        return AssociadoParametrosRespostaDto.builder()
                     .numeroDeElementos(1)
                     .totalDeElementos(1L)
                     .totalDePaginas(1)
