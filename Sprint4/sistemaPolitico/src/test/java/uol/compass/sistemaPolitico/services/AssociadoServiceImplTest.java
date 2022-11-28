@@ -20,8 +20,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.jayway.jsonpath.Option;
-
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;

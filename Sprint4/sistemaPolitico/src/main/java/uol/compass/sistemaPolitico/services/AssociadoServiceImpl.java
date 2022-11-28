@@ -3,7 +3,6 @@ package uol.compass.sistemapolitico.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.el.parser.AstOr;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
