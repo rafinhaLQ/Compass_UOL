@@ -6,12 +6,13 @@ import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
+import uol.compass.sistemapolitico.enums.Ideologia;
 
 public interface PartidoService {
 
     PartidoRespostaDto cadastra(PartidoPedidoDto pedido);
     
-    PartidoParametrosRespostaDto listar(Pageable pagina);
+    PartidoParametrosRespostaDto listar(Ideologia ideologia, Pageable pagina);
     
     PartidoRespostaDto buscarPorId(Long id);
     

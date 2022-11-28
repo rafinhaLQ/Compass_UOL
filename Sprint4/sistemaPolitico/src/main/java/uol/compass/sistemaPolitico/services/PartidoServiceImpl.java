@@ -14,6 +14,7 @@ import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
 import uol.compass.sistemapolitico.entidades.Partido;
+import uol.compass.sistemapolitico.enums.Ideologia;
 import uol.compass.sistemapolitico.excecoes.PartidoNaoEncontradoException;
 import uol.compass.sistemapolitico.repository.PartidoRepository;
 
@@ -43,8 +44,10 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public PartidoParametrosRespostaDto listar(Pageable paginacao) {
-        Page<Partido> pagina = partidoRepository.findAll(paginacao);
+    public PartidoParametrosRespostaDto listar(Ideologia ideologia, Pageable paginacao) {
+        Page<Partido> pagina = ideologia == null ?
+                    partidoRepository.findAll(paginacao) :
+                    partidoRepository.findAllByIdeologia(ideologia, paginacao);
 
         return criaParametrosDeRespostaDePartidos(pagina);
     }

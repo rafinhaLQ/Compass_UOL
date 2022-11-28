@@ -9,6 +9,8 @@ Esse repositório contém as avaliações das sprints, de Rafael Luz de Queiroz,
 
 [Sprint 3](#sprint3)
 
+[Sprint 4](#sprint4)
+
 **********
 
 <div id='sprint1'>
@@ -121,3 +123,15 @@ O arquivo **.yaml** da documentação **Swagger** está em **src/main/resources/
 O banco de dados está sendo inicializado com todos os estados do Brasil, no **data.sql**.
 
 No endpoint **PUT** os unicos atributos alterados serão o nome da Capital e a população, por razões que não faria muito sentido alterar os outros atributos.
+
+<div id='sprint4'>
+
+## Sprint 4
+
+O sistema da questão 1 foi desenvolvido em **Java 17**.
+
+A dependência Springdoc OpenAPI está instalada, para acessar o Swagger da aplicação, com a aplicação rodando, acesse a URL `http://localhost:8080/swagger-ui/index.html`.
+
+Os associados e partidos inicializados no `data.sql` não estão vinculados entre si.
+
+Exemplos de filtro e ordenação dos endpoints GET no Postman:

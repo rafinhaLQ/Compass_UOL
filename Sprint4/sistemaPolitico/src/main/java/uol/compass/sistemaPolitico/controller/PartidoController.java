@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import uol.compass.sistemapolitico.dto.pedido.PartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoParametrosRespostaDto;
 import uol.compass.sistemapolitico.dto.resposta.PartidoRespostaDto;
+import uol.compass.sistemapolitico.enums.Ideologia;
 import uol.compass.sistemapolitico.services.PartidoServiceImpl;
 
 @RestController
@@ -35,8 +37,8 @@ public class PartidoController {
     }
 
     @GetMapping
-    public ResponseEntity<PartidoParametrosRespostaDto> lista(Pageable pagincao) {
-        PartidoParametrosRespostaDto resposta = partidoService.listar(pagincao);
+    public ResponseEntity<PartidoParametrosRespostaDto> lista(@RequestParam(required = false) Ideologia ideologia, Pageable pagincao) {
+        PartidoParametrosRespostaDto resposta = partidoService.listar(ideologia, pagincao);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
 
