@@ -135,3 +135,11 @@ A dependência Springdoc OpenAPI está instalada, para acessar o Swagger da apli
 Os associados e partidos inicializados no `data.sql` não estão vinculados entre si.
 
 Exemplos de filtro e ordenação dos endpoints GET no Postman:
+
+Endpoint GET - /associados
+
+![image](https://user-images.githubusercontent.com/87668199/204184431-a91ca692-6aad-4a58-a500-3b5c90f40dda.png)
+
+Endpoint GET - /partidos
+
+![image](https://user-images.githubusercontent.com/87668199/204184656-085b00d7-2364-4b67-a342-1b5f959672f2.png)
