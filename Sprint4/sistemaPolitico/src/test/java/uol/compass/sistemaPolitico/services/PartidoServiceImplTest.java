@@ -65,7 +65,7 @@ public class PartidoServiceImplTest {
         Mockito.when(partidoRepository.findAll((Pageable) any())).thenReturn(pagina);
         Mockito.when(modelMapper.map(any(), eq(PartidoRespostaDto.class))).thenReturn(resposta);
 
-        PartidoParametrosRespostaDto respostaDeParametros = partidoService.listar(any(Pageable.class));
+        PartidoParametrosRespostaDto respostaDeParametros = partidoService.listar(null, any(Pageable.class));
 
         assertEquals(respostaDeParametrosEsperada, respostaDeParametros);
     }

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SistemapoliticoApplication {
+public class SistemaPoliticoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemapoliticoApplication.class, args);
+		SpringApplication.run(SistemaPoliticoApplication.class, args);
 	}
 
 }
