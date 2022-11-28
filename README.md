@@ -143,3 +143,5 @@ Endpoint GET - /associados
 Endpoint GET - /partidos
 
 ![image](https://user-images.githubusercontent.com/87668199/204184656-085b00d7-2364-4b67-a342-1b5f959672f2.png)
+
+Os testes do Sistema só cobrem 33% dos casos, ficou abaixo do pedido, lembrei tarde desse requerimento e não consegui cumprir.
