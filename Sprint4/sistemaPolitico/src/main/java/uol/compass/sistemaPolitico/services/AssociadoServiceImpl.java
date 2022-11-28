@@ -3,6 +3,7 @@ package uol.compass.sistemapolitico.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.el.parser.AstOr;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,6 @@ import uol.compass.sistemapolitico.entidades.Partido;
 import uol.compass.sistemapolitico.enums.CargoPolitico;
 import uol.compass.sistemapolitico.excecoes.AssociadoNaoEncontradoException;
 import uol.compass.sistemapolitico.repository.AssociadoRepository;
-import uol.compass.sistemapolitico.repository.PartidoRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +28,6 @@ public class AssociadoServiceImpl implements AssociadoService {
     private final ModelMapper modelMapper;
 
     private final AssociadoRepository associadoRepository;
-
-    private final PartidoRepository partidoRepository;
 
     private final PartidoServiceImpl partidoService;
 
@@ -44,16 +42,15 @@ public class AssociadoServiceImpl implements AssociadoService {
     @Override
     public AssociadoVinculadoDto vincula(AssociaPartidoPedidoDto pedido) {
         getAssociado(pedido.getIdAssociado());
-        Partido partidoParaVincular = modelMapper.map(partidoService.buscarPorId(pedido.getIdPartido()), Partido.class);
+        Partido partido = modelMapper.map(partidoService.buscarPorId(pedido.getIdPartido()), Partido.class);
         
         Associado associado = getAssociado(pedido.getIdAssociado());
 
-        partidoParaVincular.getAssociados().add(associado);
-        partidoParaVincular.getAssociados().forEach(associadoNaLista -> associadoNaLista.setPartidoId(partidoParaVincular));
+        associado.setPartidoId(partido);
 
-        Partido partidoVinculado = partidoRepository.save(partidoParaVincular);
+        Associado associadoVinculado = associadoRepository.save(associado);
 
-        return new AssociadoVinculadoDto(partidoVinculado, associado);
+        return new AssociadoVinculadoDto(partido, associadoVinculado);
     }
 
     @Override
@@ -91,14 +88,11 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public void desvincula(Long idAssociado, Long idPartido) {
-        Partido partido = modelMapper.map(partidoService.buscarPorId(idPartido),
-                    Partido.class);
         Associado associado = getAssociado(idAssociado);
 
         associado.setPartidoId(null);
-        partido.getAssociados().remove(associado);
 
-        partidoRepository.save(partido);
+        associadoRepository.save(associado);
     }
 
     public AssociadoParametrosRespostaDto listarPorPartido(Partido partido, Pageable paginacao) {

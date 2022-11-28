@@ -20,6 +20,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import com.jayway.jsonpath.Option;
+
 import uol.compass.sistemapolitico.dto.pedido.AssociaPartidoPedidoDto;
 import uol.compass.sistemapolitico.dto.pedido.AssociadoPedidotDto;
 import uol.compass.sistemapolitico.dto.resposta.AssociadoParametrosRespostaDto;
@@ -69,27 +71,25 @@ public class AssociadoServiceImplTest {
 
     @Test
     void deveriaVincularAssociadoAUmPartidoComSucesso() {
-        Partido partidoParaSalvar = new Partido();
-        Partido partidoSalvo = new Partido();
+        Partido partido = new Partido();
         PartidoRespostaDto partidoDto = new PartidoRespostaDto();
 
-        Associado associado = new Associado();
+        Associado associadoParaSalvar = new Associado();
+        Associado associadoSalvo = new Associado();
         AssociaPartidoPedidoDto pedido = new AssociaPartidoPedidoDto();
 
         Mockito.when(partidoService.buscarPorId(any())).thenReturn(partidoDto);
-        Mockito.when(modelMapper.map(any(), eq(Partido.class))).thenReturn(partidoParaSalvar);
-        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
+        Mockito.when(modelMapper.map(any(), eq(Partido.class))).thenReturn(partido);
+        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associadoParaSalvar));
 
-        associado.setPartidoId(partidoParaSalvar);
-
-        Mockito.when(partidoRepository.save(any())).thenReturn(partidoSalvo);
+        Mockito.when(associadoRepository.save(any())).thenReturn(associadoSalvo);
         
-        AssociadoVinculadoDto respostaEsperada = new AssociadoVinculadoDto(partidoSalvo, associado);
+        AssociadoVinculadoDto respostaEsperada = new AssociadoVinculadoDto(partido, associadoSalvo);
 
         AssociadoVinculadoDto resposta = associadoService.vincula(pedido);
 
         assertEquals(respostaEsperada, resposta);
-        verify(partidoRepository).save(any());
+        verify(associadoRepository).save(any());
     }
 
     @Test
@@ -150,19 +150,22 @@ public class AssociadoServiceImplTest {
 
     @Test
     void deveriaDesvincularAssociadoComSucesso() {
+
+        Associado associado = new Associado();
+        associado.setId(ID);
         Partido partido = new Partido();
+        partido.setId(ID);
+        associado.setPartidoId(partido);
 
-        partido.getAssociados().forEach(associado ->
-            associado.setPartidoId(null)
-        );
-        
-        partido.getAssociados().forEach(associado ->
-            assertNull(associado)
-        );
+        Mockito.when(associadoRepository.findById(any())).thenReturn(Optional.of(associado));
 
-        partidoRepository.save(any());
+        Mockito.when(associadoRepository.save(any())).thenReturn(associado);
 
-        verify(partidoRepository).save(any());
+        associadoService.desvincula(associado.getId(), partido.getId());
+
+        assertNull(associado.getPartidoId());
+        verify(associadoRepository).save(any());
+
     }
 
     private AssociadoParametrosRespostaDto criaRespostaDeParametrosDeAssociados() {
